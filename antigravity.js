@@ -1,87 +1,119 @@
-console.log('Antigravity script loaded (CSS Houdini Version from Bramus)');
+console.log('Antigravity: Static constellation with water-ripple mouse effect');
 
 export function initAntigravity(containerId, options = {}) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
-  // Clear existing content (like old Three.js canvases)
   container.innerHTML = '';
 
-  // Check if browser supports CSS Paint API
-  if (!('paintWorklet' in CSS)) {
-    console.warn('CSS Paint API not supported in this browser. The Houdini effect cannot be displayed.');
-    return;
+  const canvas = document.createElement('canvas');
+  canvas.style.cssText = `
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+  `;
+  container.appendChild(canvas);
+
+  const ctx = canvas.getContext('2d');
+
+  // ─── CONFIG ────────────────────────────────────────────────────
+  const GRID_SPACING  = 36;   // space between dots (bigger = fewer dots)
+  const DOT_RADIUS    = 1.6;  // dot size
+  const BASE_OPACITY  = 0.24; // base opacity
+  const MOUSE_RADIUS  = 143;  // ripple zone around mouse
+  const MAX_PUSH      = 23;   // max pixels a dot moves when mouse is near
+  const RETURN_SPEED  = 0.06; // how fast dot returns to home (0–1, lower=slower)
+  const PUSH_SPEED    = 0.10; // how fast dot moves toward pushed position
+  const COLOR         = '#e7f702'; // yellow
+  // ───────────────────────────────────────────────────────────────
+
+  let W = window.innerWidth;
+  let H = window.innerHeight;
+  canvas.width  = W;
+  canvas.height = H;
+
+  // Build static grid of dots
+  let dots = [];
+
+  function buildGrid() {
+    dots = [];
+    const cols = Math.ceil(W / GRID_SPACING) + 1;
+    const rows = Math.ceil(H / GRID_SPACING) + 1;
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        // Slight offset on every other row for a natural look
+        const offsetX = (r % 2) * (GRID_SPACING / 2);
+        const hx = c * GRID_SPACING + offsetX;
+        const hy = r * GRID_SPACING;
+        dots.push({
+          hx, hy,          // home position (never changes)
+          x: hx, y: hy,    // current position
+          vx: 0, vy: 0     // velocity
+        });
+      }
+    }
   }
 
-  // Load the Houdini Worklet used in the CodePen
-  CSS.paintWorklet.addModule('https://unpkg.com/css-houdini-ringparticles/dist/ringparticles.js');
+  buildGrid();
 
-  // Inject the required CSS properties and keyframes dynamically
-  const style = document.createElement('style');
-  style.innerHTML = `
-    @property --ring-x { syntax: '<number>'; inherits: false; initial-value: 50; }
-    @property --ring-y { syntax: '<number>'; inherits: false; initial-value: 50; }
-    @property --ring-interactive { syntax: '<number>'; inherits: false; initial-value: 0; }
-    @property --animation-tick { syntax: '<number>'; inherits: false; initial-value: 0; }
-    @property --ring-radius { syntax: '<number> | auto'; inherits: false; initial-value: auto; }
+  // Mouse tracking
+  let mx = -9999, my = -9999;
+  window.addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; });
+  window.addEventListener('pointerleave', () => { mx = -9999; my = -9999; });
 
-    @keyframes ripple { 
-      0% { --animation-tick: 0; } 
-      100% { --animation-tick: 1; } 
-    }
-    @keyframes ring-pulse { 
-      0% { --ring-radius: 5; } 
-      100% { --ring-radius: 25; } 
-    }
-
-    #${containerId} {
-      /* Houdini Configuration */
-      --ring-radius: 15;
-      --ring-thickness: 600;
-      --particle-count: 150;
-      --particle-rows: 40;
-      --particle-size: 2;
-      --particle-color: #e7f702; /* InstantFlow Yellow */
-      --particle-min-alpha: 0.1;
-      --particle-max-alpha: 1.0;
-      --seed: 200;
-
-      background-image: paint(ring-particles);
-      animation: ripple 6s linear infinite, ring-pulse 6s ease-in-out infinite alternate;
-      transition: --ring-x 1s ease-out, --ring-y 1s ease-out, --ring-interactive 0.5s;
-      
-      width: 100vw;
-      height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: -1;
-    }
-  `;
-  document.head.appendChild(style);
-
-  let isInteractive = false;
-  
-  // Track mouse movement across the whole window
-  window.addEventListener('pointermove', (e) => {
-    if (!isInteractive) {
-      isInteractive = true;
-      container.style.setProperty('--ring-interactive', 1);
-    }
-    // Calculate percentage position
-    const x = (e.clientX / window.innerWidth) * 100;
-    const y = (e.clientY / window.innerHeight) * 100;
-    
-    container.style.setProperty('--ring-x', x);
-    container.style.setProperty('--ring-y', y);
+  // Resize
+  window.addEventListener('resize', () => {
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width  = W;
+    canvas.height = H;
+    buildGrid();
   });
 
-  window.addEventListener('pointerleave', () => {
-    isInteractive = false;
-    container.style.setProperty('--ring-interactive', 0);
-    // Float back to center when mouse leaves
-    container.style.setProperty('--ring-x', 50);
-    container.style.setProperty('--ring-y', 50);
-  });
+  // ─── ANIMATION LOOP ────────────────────────────────────────────
+  function tick() {
+    ctx.clearRect(0, 0, W, H);
+
+    ctx.fillStyle = COLOR;
+
+    for (const d of dots) {
+      // Distance from mouse
+      const dx = d.hx - mx;
+      const dy = d.hy - my;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      let targetX = d.hx;
+      let targetY = d.hy;
+
+      if (dist < MOUSE_RADIUS && dist > 0) {
+        // Push dot away from mouse, strength fades with distance
+        const strength = (1 - dist / MOUSE_RADIUS);
+        const push = MAX_PUSH * strength;
+        targetX = d.hx + (dx / dist) * push;
+        targetY = d.hy + (dy / dist) * push;
+      }
+
+      // Smooth interpolate toward target
+      d.x += (targetX - d.x) * (dist < MOUSE_RADIUS ? PUSH_SPEED : RETURN_SPEED);
+      d.y += (targetY - d.y) * (dist < MOUSE_RADIUS ? PUSH_SPEED : RETURN_SPEED);
+
+      // Opacity: slightly brighter near mouse
+      let alpha = BASE_OPACITY;
+      if (dist < MOUSE_RADIUS) {
+        alpha = BASE_OPACITY + (0.5 - BASE_OPACITY) * (1 - dist / MOUSE_RADIUS);
+      }
+
+      ctx.globalAlpha = alpha;
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, DOT_RADIUS, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  tick();
 }
