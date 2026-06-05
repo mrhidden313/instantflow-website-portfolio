@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms &amp; Conditions — InstantFlow | Enterprise WhatsApp Business Platform</title>
+  <meta name="description" content="InstantFlow Terms &amp; Conditions. Read the legally binding terms governing your use of the InstantFlow Enterprise WhatsApp Business Platform and Proprietary System."/>
+  <meta name="keywords" content="InstantFlow Terms, WhatsApp Business API Terms, SaaS Terms of Service, Anti-Ban WhatsApp Terms"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="icon" type="image/png" href="logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --y: #e7f702; --yd: #c8d502; --b: #000; --d: #080808;
+      --card: #0d0d0d; --border: rgba(255,255,255,.06); --muted: #666; --text: #f0f0f0;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--b); color: var(--text); overflow-x: hidden; }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: linear-gradient(rgba(231,247,2,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(231,247,2,.025) 1px, transparent 1px);
+      background-size: 60px 60px; pointer-events: none; z-index: 0;
+    }
+    .orb { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
+    .orb1 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(231,247,2,.09), transparent 70%); top: -80px; left: -80px; }
+    .orb2 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(231,247,2,.06), transparent 70%); bottom: -80px; right: -80px; }
+
+    nav {
+      position: sticky; top: 0; z-index: 99;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 6%;
+      background: rgba(0,0,0,.85); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 32px; width: 32px; border-radius: 6px; object-fit: cover; box-shadow: 0 0 12px rgba(231,247,2,.35); }
+    .nav-logo span { font-size: 1.2rem; font-weight: 800; color: var(--y); }
+    .nav-back { color: var(--muted); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+    .nav-back:hover { color: var(--y); }
+
+    .page-hero {
+      padding: 5rem 6% 3.5rem; border-bottom: 1px solid var(--border);
+      position: relative; z-index: 1;
+    }
+    .page-hero .inner { max-width: 800px; margin: 0 auto; }
+    .tag {
+      display: inline-block; background: rgba(231,247,2,.1); color: var(--y);
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 0.3rem 0.8rem; border-radius: 4px; margin-bottom: 1.2rem;
+      border: 1px solid rgba(231,247,2,.2);
+    }
+    .page-hero h1 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; letter-spacing: -1.5px; margin-bottom: 0.75rem; }
+    .page-hero h1 em { font-style: normal; color: var(--y); text-shadow: 0 0 30px rgba(231,247,2,.4); }
+    .page-hero p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+
+    .content-wrap { max-width: 800px; margin: 0 auto; padding: 4rem 6%; position: relative; z-index: 1; }
+
+    .toc {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 1.8rem 2rem; margin-bottom: 3rem;
+    }
+    .toc h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--y); margin-bottom: 1.2rem; }
+    .toc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.4rem 2rem; }
+    .toc a {
+      color: var(--muted); text-decoration: none; font-size: 0.875rem;
+      display: flex; align-items: center; gap: 6px; padding: 0.3rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.04); transition: color 0.2s;
+    }
+    .toc a:hover { color: var(--y); }
+    .toc a::before { content: '›'; color: var(--y); font-weight: 900; }
+
+    .alert-box {
+      background: rgba(231,247,2,.06); border: 1px solid rgba(231,247,2,.2);
+      border-left: 3px solid var(--y); border-radius: 0 12px 12px 0;
+      padding: 1.2rem 1.8rem; margin: 1.5rem 0;
+    }
+    .alert-box p { color: #ddd; font-size: 0.9rem; line-height: 1.7; margin: 0; }
+    .alert-box strong { color: var(--y); }
+
+    .ps { margin-bottom: 3rem; padding-top: 1rem; }
+    .ps h2 {
+      font-size: 1.15rem; font-weight: 800; color: var(--y);
+      margin-bottom: 1.2rem; padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px;
+    }
+    .ps h2 .num {
+      background: rgba(231,247,2,.12); color: var(--y); font-size: 0.72rem;
+      font-weight: 900; padding: 0.2rem 0.55rem; border-radius: 6px;
+      border: 1px solid rgba(231,247,2,.25); letter-spacing: .5px;
+    }
+    .ps p { color: #c0c0c0; line-height: 1.85; margin-bottom: 1rem; font-size: 0.93rem; }
+    .ps ul, .ps ol { color: #c0c0c0; line-height: 1.85; padding-left: 1.4rem; margin-bottom: 1rem; }
+    .ps li { margin-bottom: 0.55rem; font-size: 0.93rem; }
+    .ps strong { color: #fff; }
+    .ps a { color: var(--y); text-decoration: none; border-bottom: 1px dashed rgba(231,247,2,.35); }
+    .ps a:hover { border-color: var(--y); }
+
+    .highlight-box {
+      background: rgba(255,255,255,.03); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.2rem 1.5rem; margin: 1rem 0;
+    }
+    .highlight-box li { list-style: none; padding-left: 0; }
+    .highlight-box li::before { content: '✓ '; color: var(--y); font-weight: 900; }
+
+    .refund-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+    .refund-card {
+      background: rgba(255,255,255,.03); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.2rem;
+    }
+    .refund-card h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 0.5rem; }
+    .refund-card p { font-size: 0.875rem; color: #ccc; margin: 0; line-height: 1.6; }
+    .refund-card.ok { border-color: rgba(231,247,2,.25); }
+    .refund-card.ok h4 { color: var(--y); }
+
+    footer { border-top: 1px solid var(--border); padding: 2.5rem 6%; text-align: center; position: relative; z-index: 1; }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--y); }
+    .footer-brand { font-size: 1rem; font-weight: 800; color: var(--y); margin-bottom: 0.4rem; }
+    .footer-copy { color: var(--muted); font-size: 0.78rem; line-height: 1.7; }
+
+    @media(max-width: 640px) {
+      .refund-grid { grid-template-columns: 1fr; }
+      .toc-grid { grid-template-columns: 1fr; }
+      .content-wrap { padding: 3rem 5%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="logo.png" alt="InstantFlow"/>
+    <span>InstantFlow</span>
+  </a>
+  <a class="nav-back" href="index.html">← Back to Home</a>
+</nav>
+
+<div class="page-hero">
+  <div class="inner">
+    <div class="tag">Legal Agreement</div>
+    <h1>Terms &amp; <em>Conditions</em></h1>
+    <p>Last Updated: May 18, 2026 &nbsp;·&nbsp; Effective immediately upon service activation. Please read these terms carefully before using InstantFlow.</p>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <div class="toc">
+    <h3>Table of Contents</h3>
+    <div class="toc-grid">
+      <a href="#t1">1. Nature of Service</a>
+      <a href="#t2">2. Onboarding Requirements</a>
+      <a href="#t3">3. Platform Capabilities &amp; Limitations</a>
+      <a href="#t4">4. Messaging Window &amp; SLA</a>
+      <a href="#t5">5. Unlimited Package Terms</a>
+      <a href="#t6">6. Technical Support</a>
+      <a href="#t7">7. Financial Terms &amp; Refund Policy</a>
+      <a href="#t8">8. Service Activation Recommendation</a>
+      <a href="#t9">9. Liability &amp; Compliance</a>
+      <a href="#t10">10. Policy Amendments</a>
+      <a href="#t11">11. Governing Law</a>
+      <a href="#t12">12. Contact &amp; Support</a>
+    </div>
+  </div>
+
+  <div class="alert-box">
+    <p>By activating, accessing, or using the <strong>InstantFlow Enterprise Messaging Platform</strong>, you confirm that you have read, understood, and unconditionally agree to be bound by these Terms &amp; Conditions. This agreement constitutes a legally binding contract between you ("Client") and InstantFlow ("the Company").</p>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="ps" id="t1">
+    <h2><span class="num">01</span> Nature of Service</h2>
+    <p>The InstantFlow platform is a <strong>professional enterprise-grade messaging and customer engagement system</strong> powered exclusively by the <strong>InstantFlow Proprietary System</strong>. This service is fundamentally distinct from standard consumer WhatsApp or WhatsApp Business applications.</p>
+    <p>InstantFlow is purpose-built for corporations, financial institutions, e-commerce enterprises, digital agencies, real estate firms, and other professional organizations requiring high-volume, compliant, and structured business communication at scale.</p>
+    <div class="alert-box">
+      <p><strong>Important:</strong> The InstantFlow Proprietary System operates through the official Meta WhatsApp Business API infrastructure. Your business communication will be presented with the authority and professional appearance associated with enterprise-level brands — comparable to banks, national courier services, and telecom operators.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="ps" id="t2">
+    <h2><span class="num">02</span> Onboarding Requirements</h2>
+    <p>To successfully provision your enterprise messaging environment, the following mandatory prerequisites must be fulfilled prior to activation:</p>
+    <ul>
+      <li><strong>Dedicated SIM Number:</strong> A new, unused SIM card is required. The number must have no prior registration to any WhatsApp or WhatsApp Business account. Existing personal or business WhatsApp numbers are not compatible with the InstantFlow Proprietary System.</li>
+      <li><strong>Meta Business Account Access:</strong> Valid Facebook/Meta account credentials are required to complete the official Meta Business API verification and linkage process. This grants your business the necessary API access tier required to operate the platform.</li>
+      <li>The Client is solely responsible for ensuring the accuracy and validity of all submitted credentials and account information.</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="ps" id="t3">
+    <h2><span class="num">03</span> Platform Capabilities &amp; Limitations</h2>
+    <p>The InstantFlow Enterprise Platform supports the following communication channels and enforces the following technical parameters:</p>
+    <div class="highlight-box">
+      <ul>
+        <li>Unlimited broadcast text messaging to opted-in contact lists</li>
+        <li>Unlimited high-resolution image broadcasting and media campaigns</li>
+        <li>Structured business messaging with professional account identity</li>
+        <li>Automated response flows and 24/7 chatbot engagement</li>
+        <li>Live agent handoff and multi-agent inbox management</li>
+      </ul>
+    </div>
+    <p><strong>Technical Constraints (inherent to the Meta WhatsApp Business API):</strong></p>
+    <ul>
+      <li><strong>Video Content:</strong> Video files exceeding <strong>16 seconds in duration</strong> cannot be transmitted through the InstantFlow Proprietary System. Clients requiring delivery of longer proof videos, payment receipts, or extended promotional content should maintain a secondary consumer WhatsApp number for such supplementary communication.</li>
+      <li><strong>Voice Notes:</strong> Voice note (audio message) transmission is not supported within this enterprise communication framework.</li>
+      <li><strong>Voice Calls:</strong> Traditional and VoIP voice calling is not available through the platform. This is a standard architectural boundary of all Meta Business API integrations.</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="ps" id="t4">
+    <h2><span class="num">04</span> Messaging Window &amp; Client SLA</h2>
+    <p>The Meta WhatsApp Business API enforces a <strong>24-Hour Customer Service Window</strong> — a regulatory constraint applicable to all businesses operating on the API tier. Clients are required to understand and comply with the following SLA obligations:</p>
+    <ul>
+      <li>Any inbound customer message initiates a 24-hour active communication window, during which the Client may respond freely using any message format.</li>
+      <li><strong>Clients must reply to inbound customer messages within 24 hours</strong> of receipt to maintain the active messaging window.</li>
+      <li>Failure to respond within the 24-hour window will restrict outbound messaging to that customer until they initiate a new conversation.</li>
+      <li>InstantFlow's automated response system can be configured to manage initial replies and ensure SLA compliance around the clock.</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="ps" id="t5">
+    <h2><span class="num">05</span> Unlimited Broadcasting Package</h2>
+    <p>InstantFlow offers an <strong>Unlimited Messaging Package</strong> as an optional add-on to the base service subscription. Clients electing this tier should note:</p>
+    <ul>
+      <li>The unlimited package is subject to supplemental service charges above the standard subscription fee.</li>
+      <li>Under this package, no per-message delivery caps or broadcasting volume limits are applied.</li>
+      <li>All Meta platform policies, including messaging quality ratings and template compliance, continue to apply irrespective of the selected package tier.</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="ps" id="t6">
+    <h2><span class="num">06</span> Technical Support &amp; Incident Management</h2>
+    <p>InstantFlow provides dedicated technical support to all active clients. In the event of a platform incident, service degradation, or technical anomaly, Clients are required to:</p>
+    <ul>
+      <li>Report the issue to InstantFlow immediately via the designated support channel (WhatsApp: <a href="https://wa.me/923184780005" target="_blank">+92 318 4780005</a>).</li>
+      <li>Provide clear documentation of the issue, including timestamps, affected message types, and any error indicators.</li>
+    </ul>
+    <p>Upon receipt of an incident report, the InstantFlow technical team will:</p>
+    <ul>
+      <li>Conduct a root cause analysis of the reported issue.</li>
+      <li>Identify whether the issue originates from the InstantFlow Proprietary System, Meta's API infrastructure, or client-side configuration.</li>
+      <li>Provide a complete remediation plan and implement all applicable technical solutions within a commercially reasonable timeframe.</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="ps" id="t7">
+    <h2><span class="num">07</span> Financial Terms &amp; Refund Policy</h2>
+    <p>The service fee structure encompasses all costs associated with delivering the InstantFlow enterprise solution, including but not limited to:</p>
+    <ul>
+      <li>Meta Business API access and verification fees</li>
+      <li>Platform hosting, infrastructure, and operational costs</li>
+      <li>Professional setup, configuration, and onboarding services</li>
+      <li>Applicable government taxes and regulatory compliance fees</li>
+    </ul>
+    <p><strong>Service Cancellation &amp; Refund Terms:</strong></p>
+    <div class="refund-grid">
+      <div class="refund-card ok">
+        <h4>✓ Upon Cancellation</h4>
+        <p>All recurring monthly billing obligations cease immediately upon confirmed cancellation. No future charges will be applied.</p>
+      </div>
+      <div class="refund-card">
+        <h4>Non-Refundable Components</h4>
+        <p>Setup fees, Meta API provisioning charges, onboarding costs, applicable taxes, and third-party service fees are strictly non-refundable.</p>
+      </div>
+    </div>
+    <div class="alert-box">
+      <p><strong>Goodwill Refund:</strong> As a commitment to client satisfaction, InstantFlow will issue a <strong>15% goodwill refund on the total amount paid</strong> in the event of service discontinuation, provided the cancellation is made in good faith and does not arise from a breach of these Terms by the Client.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 8 -->
+  <div class="ps" id="t8">
+    <h2><span class="num">08</span> Service Activation Recommendation</h2>
+    <p>InstantFlow strongly recommends that first-time Clients begin with a <strong>single-seat activation</strong> to properly evaluate the platform's capabilities, workflow integrations, and business impact prior to scaling.</p>
+    <p>This phased approach allows the Client to:</p>
+    <ul>
+      <li>Fully understand the enterprise messaging environment and its distinct operational model.</li>
+      <li>Measure tangible business outcomes — including improved response rates, customer engagement, and sales conversions.</li>
+      <li>Confidently proceed with additional seat activations and expanded deployments upon validation.</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 9 -->
+  <div class="ps" id="t9">
+    <h2><span class="num">09</span> Liability, Compliance &amp; Acceptable Use</h2>
+    <p>The Client assumes <strong>full and sole responsibility</strong> for all content transmitted, all campaigns executed, and all communications conducted through the InstantFlow platform. Prohibited activities include, without limitation:</p>
+    <ul>
+      <li>Transmission of unsolicited bulk messages (spam) to recipients who have not provided verifiable opt-in consent.</li>
+      <li>Distribution of fraudulent, illegal, misleading, defamatory, or harmful content.</li>
+      <li>Any activity constituting a violation of Meta's WhatsApp Business Policy or applicable local and international law.</li>
+      <li>Impersonation of individuals, organizations, or government entities.</li>
+    </ul>
+    <div class="alert-box">
+      <p><strong>Liability Disclaimer:</strong> InstantFlow bears no responsibility for any account restrictions, suspensions, or penalties imposed by Meta or any regulatory authority arising from the Client's violation of platform policies, misuse of the system, engagement in spam activity, or any illegal operations. All such consequences and associated liabilities rest exclusively with the Client.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 10 -->
+  <div class="ps" id="t10">
+    <h2><span class="num">10</span> Policy Amendments &amp; Service Updates</h2>
+    <p>InstantFlow reserves the unilateral right to amend, update, or revise these Terms &amp; Conditions, service pricing, platform features, or operational policies at any time without prior written notice. Such changes may be necessitated by:</p>
+    <ul>
+      <li>Updates to Meta's WhatsApp Business API policies or technical requirements.</li>
+      <li>Changes in applicable law or regulatory frameworks.</li>
+      <li>Platform improvements, feature additions, or operational restructuring.</li>
+    </ul>
+    <p>Continued use of the InstantFlow platform following any policy update constitutes the Client's acceptance of the revised terms.</p>
+  </div>
+
+  <!-- SECTION 11 -->
+  <div class="ps" id="t11">
+    <h2><span class="num">11</span> Governing Law &amp; Dispute Resolution</h2>
+    <p>These Terms &amp; Conditions shall be governed by and construed in accordance with applicable law. Any dispute, controversy, or claim arising out of or in connection with this agreement shall first be subject to good-faith negotiation between the parties. If unresolved within 30 days, disputes shall be referred to competent jurisdiction as mutually agreed upon between InstantFlow and the Client.</p>
+  </div>
+
+  <!-- SECTION 12 -->
+  <div class="ps" id="t12">
+    <h2><span class="num">12</span> Contact &amp; Support</h2>
+    <p>For all inquiries, technical support, billing questions, or legal correspondence, please contact the InstantFlow team through the following official channels:</p>
+    <div class="highlight-box" style="margin-top:1rem;">
+      <ul style="list-style:none;padding:0;">
+        <li style="padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.05);">🏢 <strong>Company:</strong> InstantFlow</li>
+        <li style="padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.05);">📞 <strong>WhatsApp &amp; Contact:</strong> <a href="https://wa.me/923184780005" target="_blank">+92 318 4780005</a></li>
+        <li style="padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.05);">📍 <strong>Address:</strong> Achini Rd, Achini Payan, Peshawar, Pakistan</li>
+        <li style="padding:.5rem 0;">🌐 <strong>Platform:</strong> <a href="https://instantflow.online/app/login" target="_blank">instantflow.online/app/login</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-brand">InstantFlow</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#features">Features</a>
+    <a href="index.html#benefits">Key Benefits</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms &amp; Conditions</a>
+    <a href="https://wa.me/923184780005" target="_blank">Contact</a>
+  </div>
+  <div class="footer-copy">
+    © 2026 InstantFlow. All rights reserved.<br/>
+    Achini Rd, Achini Payan, Peshawar, Pakistan &nbsp;·&nbsp;
+    <a href="https://wa.me/923184780005" target="_blank" style="color:inherit;text-decoration:none;">+92 318 4780005</a>
+  </div>
+</footer>
+
+</body>
+</html>
