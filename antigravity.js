@@ -1,4 +1,4 @@
-console.log('Antigravity: Static constellation with water-ripple mouse effect');
+console.log('Antigravity: Oily transparent liquid water effect');
 
 export function initAntigravity(containerId, options = {}) {
   const container = document.getElementById(containerId);
@@ -18,40 +18,46 @@ export function initAntigravity(containerId, options = {}) {
 
   const ctx = canvas.getContext('2d');
 
-  // ─── CONFIG ────────────────────────────────────────────────────
-  const GRID_SPACING  = 36;   // space between dots (bigger = fewer dots)
-  const DOT_RADIUS    = 1.6;  // dot size
-  const BASE_OPACITY  = 0.24; // base opacity
-  const MOUSE_RADIUS  = 143;  // ripple zone around mouse
-  const MAX_PUSH      = 23;   // max pixels a dot moves when mouse is near
-  const RETURN_SPEED  = 0.06; // how fast dot returns to home (0–1, lower=slower)
-  const PUSH_SPEED    = 0.10; // how fast dot moves toward pushed position
-  const COLOR         = '#e7f702'; // yellow
-  // ───────────────────────────────────────────────────────────────
-
   let W = window.innerWidth;
   let H = window.innerHeight;
   canvas.width  = W;
   canvas.height = H;
 
-  // Build static grid of dots
+  // ─── CONFIG ────────────────────────────────────────────────────
+  const GRID_SPACING  = 30;    
+  const DOT_RADIUS    = 2.5;     
+  const MOUSE_RADIUS  = 150;   
+  const MAX_PUSH      = 60;    
+  const RETURN_SPEED  = 0.05; 
+  const PUSH_SPEED    = 0.2;  
+  const FADE_SPEED    = 0.15;  
+  const BASE_OPACITY  = 0.0;  // Hidden by default, only visible near mouse
+  const MAX_OPACITY   = 1.0;   
+  const GLOW_BLUR     = 15;    
+  const COLOR         = '#e7f702';
+  
+  // Ripple Config (Water drop effect)
+  const RIPPLE_SPEED  = 9.5;   // 40% slower
+  const RIPPLE_WIDTH  = 80;
+  const RIPPLE_FORCE  = 120; // Gentler push
+  // ───────────────────────────────────────────────────────────────
+
   let dots = [];
+  let ripples = [];
 
   function buildGrid() {
     dots = [];
     const cols = Math.ceil(W / GRID_SPACING) + 1;
     const rows = Math.ceil(H / GRID_SPACING) + 1;
-
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
-        // Slight offset on every other row for a natural look
         const offsetX = (r % 2) * (GRID_SPACING / 2);
-        const hx = c * GRID_SPACING + offsetX;
-        const hy = r * GRID_SPACING;
         dots.push({
-          hx, hy,          // home position (never changes)
-          x: hx, y: hy,    // current position
-          vx: 0, vy: 0     // velocity
+          hx: c * GRID_SPACING + offsetX,
+          hy: r * GRID_SPACING,
+          x:  c * GRID_SPACING + offsetX,
+          y:  r * GRID_SPACING,
+          alpha: BASE_OPACITY
         });
       }
     }
@@ -59,59 +65,101 @@ export function initAntigravity(containerId, options = {}) {
 
   buildGrid();
 
-  // Mouse tracking
   let mx = -9999, my = -9999;
+
   window.addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; });
   window.addEventListener('pointerleave', () => { mx = -9999; my = -9999; });
-
-  // Resize
+  window.addEventListener('click', e => {
+    ripples.push({ x: e.clientX, y: e.clientY, radius: 0, life: 1 });
+  });
   window.addEventListener('resize', () => {
-    W = window.innerWidth;
-    H = window.innerHeight;
-    canvas.width  = W;
-    canvas.height = H;
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = W; canvas.height = H;
     buildGrid();
   });
 
-  // ─── ANIMATION LOOP ────────────────────────────────────────────
+  // ─── LOOP ──────────────────────────────────────────────────────
   function tick() {
     ctx.clearRect(0, 0, W, H);
 
-    ctx.fillStyle = COLOR;
-
-    for (const d of dots) {
-      // Distance from mouse
-      const dx = d.hx - mx;
-      const dy = d.hy - my;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-
-      let targetX = d.hx;
-      let targetY = d.hy;
-
-      if (dist < MOUSE_RADIUS && dist > 0) {
-        // Push dot away from mouse, strength fades with distance
-        const strength = (1 - dist / MOUSE_RADIUS);
-        const push = MAX_PUSH * strength;
-        targetX = d.hx + (dx / dist) * push;
-        targetY = d.hy + (dy / dist) * push;
-      }
-
-      // Smooth interpolate toward target
-      d.x += (targetX - d.x) * (dist < MOUSE_RADIUS ? PUSH_SPEED : RETURN_SPEED);
-      d.y += (targetY - d.y) * (dist < MOUSE_RADIUS ? PUSH_SPEED : RETURN_SPEED);
-
-      // Opacity: slightly brighter near mouse
-      let alpha = BASE_OPACITY;
-      if (dist < MOUSE_RADIUS) {
-        alpha = BASE_OPACITY + (0.5 - BASE_OPACITY) * (1 - dist / MOUSE_RADIUS);
-      }
-
-      ctx.globalAlpha = alpha;
-      ctx.beginPath();
-      ctx.arc(d.x, d.y, DOT_RADIUS, 0, Math.PI * 2);
-      ctx.fill();
+    // Update ripples
+    for (let i = ripples.length - 1; i >= 0; i--) {
+      let r = ripples[i];
+      r.radius += RIPPLE_SPEED;
+      r.life = 1 - (r.radius / MOUSE_RADIUS); // Fades out exactly at the edge of the visible dot area
+      if (r.life <= 0) ripples.splice(i, 1);
     }
 
+    // Draw the actual water wave rings! (Clear liquid glass effect)
+    for (const r of ripples) {
+      ctx.beginPath();
+      ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(255, 255, 255, ${r.life * 0.4})`; // Transparent white liquid
+      ctx.lineWidth = 4 * r.life; // Thinner
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(r.x, r.y, r.radius * 0.7, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(255, 255, 255, ${r.life * 0.15})`;
+      ctx.lineWidth = 2 * r.life;
+      ctx.stroke();
+    }
+
+    // Oily glow effect
+    ctx.shadowColor  = COLOR;
+    ctx.shadowBlur   = GLOW_BLUR;
+    ctx.fillStyle    = COLOR;
+
+    for (const d of dots) {
+      // Mouse interaction
+      const dx   = d.hx - mx;
+      const dy   = d.hy - my;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const inZone = dist < MOUSE_RADIUS;
+
+      let targetAlpha = 0;
+      let tx = d.hx, ty = d.hy;
+
+      if (inZone) {
+        targetAlpha = MAX_OPACITY * (1 - dist / MOUSE_RADIUS);
+        if (dist > 0) {
+          const push = MAX_PUSH * (1 - dist / MOUSE_RADIUS);
+          tx += (dx / dist) * push;
+          ty += (dy / dist) * push;
+        }
+      }
+
+      // Ripple interaction (liquid water shockwave)
+      for (const r of ripples) {
+        const rdx = d.hx - r.x;
+        const rdy = d.hy - r.y;
+        const rdist = Math.sqrt(rdx * rdx + rdy * rdy);
+        const diff = Math.abs(rdist - r.radius);
+        
+        if (diff < RIPPLE_WIDTH) {
+          const force = RIPPLE_FORCE * (1 - diff / RIPPLE_WIDTH) * r.life;
+          if (rdist > 0) {
+            tx += (rdx / rdist) * force;
+            ty += (rdy / rdist) * force;
+          }
+          targetAlpha = Math.max(targetAlpha, MAX_OPACITY * r.life);
+        }
+      }
+
+      d.alpha += (targetAlpha - d.alpha) * FADE_SPEED;
+      d.x += (tx - d.x) * (inZone || ripples.length > 0 ? PUSH_SPEED : RETURN_SPEED);
+      d.y += (ty - d.y) * (inZone || ripples.length > 0 ? PUSH_SPEED : RETURN_SPEED);
+
+      if (d.alpha > 0.01) {
+        ctx.globalAlpha = d.alpha;
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, DOT_RADIUS, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    ctx.globalAlpha = 1;
+    ctx.shadowBlur  = 0;
     requestAnimationFrame(tick);
   }
 
