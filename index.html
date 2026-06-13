@@ -543,6 +543,7 @@
         inset -2px -2px 5px rgba(0,0,0,0.6),
         0 8px 32px rgba(0,0,0,0.4);
       animation: liquidFloat 6s ease-in-out infinite alternate;
+      transform-style: preserve-3d;
     }
 
     .fc:hover {
@@ -604,6 +605,7 @@
       position: relative;
       overflow: hidden;
       animation: liquidFloat 7s ease-in-out infinite alternate-reverse;
+      transform-style: preserve-3d;
     }
 
     .step:hover {
@@ -989,9 +991,13 @@
     /* BENEFITS */
     .ben-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3.5rem
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin-top: 3.5rem;
+      align-items: start;
+    }
+    @media (max-width: 1024px) {
+      .ben-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     .bc {
@@ -999,12 +1005,14 @@
       border: 1px solid rgba(255, 255, 255, .07);
       border-radius: 22px;
       padding: 2.2rem 2rem;
-      transition: all .19s;
+      transition: all .25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
       overflow: hidden;
       backdrop-filter: blur(24px) saturate(200%);
       -webkit-backdrop-filter: blur(24px) saturate(200%);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 8px 32px rgba(0,0,0,.2)
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 8px 32px rgba(0,0,0,.2);
+      transform-style: preserve-3d;
+      min-height: 220px;
     }
 
     .bc::before {
@@ -1471,7 +1479,7 @@
           }
 
           .ben-grid {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr !important;
             gap: 1rem
           }
 
@@ -1762,7 +1770,21 @@
           25% { transform: rotate(-10deg); }
           75% { transform: rotate(10deg); }
         }
-  </style>
+
+        /* Lenis Smooth Scroll Recommended CSS */
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        .lenis.lenis-smooth iframe { pointer-events: none; }
+    
+    </style>
+
+    <!-- Outcrowd Advanced Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
 </head>
 
 <body>
@@ -1780,7 +1802,7 @@
       <li><a href="privacy-policy.html">Privacy</a></li>
       <li><a href="terms.html">Terms</a></li>
     </ul>
-    <a class="nav-cta" href="https://instantflow.online/app/login">Get Started →</a>
+    <a class="nav-cta" href="https://user.instantflow.online">Get Started →</a>
     <button class="ham" id="ham" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
@@ -1793,7 +1815,7 @@
     <a href="#benefits" class="mob-link">Key Benefits</a>
     <a href="privacy-policy.html" class="mob-link">Privacy</a>
     <a href="terms.html" class="mob-link">Terms</a>
-    <a class="mob-cta mob-link" href="https://instantflow.online/app/login">Get Started Free</a>
+    <a class="mob-cta mob-link" href="https://user.instantflow.online">Get Started Free</a>
   </div>
 
 
@@ -1804,7 +1826,7 @@
     <p>InstantFlow is the most powerful WhatsApp Marketing SaaS. Broadcast campaigns, AI chatbots, and live agent
       support — all in one platform.</p>
     <div class="hero-btns">
-      <a class="btn-y" id="hero-cta" href="https://instantflow.online/app/login">Get Started Free →</a>
+      <a class="btn-y" id="hero-cta" href="https://user.instantflow.online">Get Started Free →</a>
       <a class="btn-g" href="app-release.apk" download="InstantFlow.apk">Download Android App ↓</a>
     </div>
     <div style="margin-top: 15px; color: var(--y); font-size: 0.9rem; font-weight: 600; text-align: center;">* Contact
@@ -2017,8 +2039,8 @@
     <p>Join thousands of businesses already converting on InstantFlow.<br /><strong
         style="color:var(--y); margin-top: 5px; display: inline-block;">* Contact Admin for Full Service *</strong></p>
     <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-      <a class="btn-y" id="cta-band-btn" href="https://instantflow.online/app/login">Get Started Now →</a>
-      <a class="btn-g" href="app-release.apk" download="InstantFlow.apk"
+      <a class="btn-y" id="cta-band-btn" href="https://user.instantflow.online">Get Started Now →</a>
+      <a class="btn-g" id="cta-download-btn" href="app-release.apk" download="InstantFlow.apk"
         style="border-color: rgba(255,255,255,0.2);">Download Android App ↓</a>
     </div>
   </div>
@@ -2218,20 +2240,16 @@
       });
     });
   </script>
-  <script type="module">
-    import { initAntigravity } from './antigravity.js?v=5';
-    initAntigravity('antigravity-container', { count: 800, autoAnimate: true, rotationSpeed: 0.2, magnetRadius: 15, ringRadius: 10, waveSpeed: 0.2, lerpSpeed: 0.05 });
-  </script>
+    <script type="module">
+      import { initAntigravity } from './antigravity.js?v=5';
+      initAntigravity('antigravity-container', { count: 800, autoAnimate: true, rotationSpeed: 0.2, magnetRadius: 15, ringRadius: 10, waveSpeed: 0.2, lerpSpeed: 0.05 });
+    </script>
+    <script src="outcrowd.js?v=3"></script>
 </body>
 
-</html>
 
 
 
-
-
-
-
-
-
-
+< / h t m l > 
+ 
+ 
