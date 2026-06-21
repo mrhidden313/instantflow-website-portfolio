@@ -335,111 +335,70 @@ function startEpicLiquidDownload(fakeBtn, toBtn, fromBtn) {
         overflow: 'hidden',
         background: '#000000',
         border: '3px solid #e7f702',
-        boxShadow: '0 0 40px rgba(231,247,2,0.3), inset 0 0 20px rgba(0,85,255,0.4)',
+        boxShadow: '0 0 40px rgba(231,247,2,0.3), inset 0 0 20px rgba(0,255,255,0.2)',
         position: 'fixed', // ensure it acts as a positioning container for children
     });
 
-    // Inject realistic liquid keyframes for the rushing front edge and top waves
+    // Inject premium aqua glowing bar keyframes
     if (!document.getElementById('liquid-wave-styles')) {
         const style = document.createElement('style');
         style.id = 'liquid-wave-styles';
         style.innerHTML = `
-            @keyframes liquidSpin {
-                0% { transform: translateY(-50%) rotate(0deg); }
-                100% { transform: translateY(-50%) rotate(360deg); }
+            @keyframes neonPulse {
+                0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 15px rgba(0,255,255,0.5)); }
+                50% { opacity: 1; filter: drop-shadow(0 0 25px rgba(0,255,255,1)); }
             }
-            @keyframes waveScrollX {
-                0% { background-position-x: 0px; }
-                100% { background-position-x: 1000px; }
+            @keyframes shimmerBar {
+                0% { background-position: -200% 0; }
+                100% { background-position: 200% 0; }
             }
-            @keyframes bubbleRiseBg {
-                0% { background-position: 0 0, 0 0, 0 0, 0 0, 0 0; }
-                100% { background-position: 0 -120px, 0 -160px, 0 -90px, 0 -180px, 0 0; }
-            }
-            .water-bg-realistic {
+            .aqua-bar-bg {
                 position: absolute;
                 top: 0; bottom: 0; left: 0;
-                background-image: 
-                    radial-gradient(circle at 20% 30%, rgba(100,255,255,0.7) 1px, transparent 2px),
-                    radial-gradient(circle at 70% 60%, rgba(150,255,255,0.8) 1.5px, transparent 2.5px),
-                    radial-gradient(circle at 40% 80%, rgba(200,255,255,0.6) 1px, transparent 2px),
-                    radial-gradient(circle at 80% 20%, rgba(100,255,255,0.9) 2px, transparent 3px),
-                    linear-gradient(180deg, #005ce6 5%, #001a4d 50%, #000511 100%);
-                background-size: 120px 120px, 160px 160px, 90px 90px, 180px 180px, 100% 100%;
-                animation: bubbleRiseBg 6s linear infinite;
+                background: linear-gradient(90deg, rgba(0,255,255,0.1) 0%, rgba(0,255,255,0.6) 50%, rgba(0,255,255,0.1) 100%);
+                background-size: 200% 100%;
+                animation: shimmerBar 1.5s infinite linear;
+                box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.3);
             }
-            .top-wave-1 {
+            .glow-head {
                 position: absolute;
-                top: -5px; left: 0; right: 0; height: 50px;
-                background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 60" preserveAspectRatio="none"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="%2366ccff"/><stop offset="100%" stop-color="%23005ce6"/></linearGradient></defs><path d="M0,35 Q100,10 200,35 T400,35 T600,35 T800,35 L800,60 L0,60 Z" fill="url(%23g)"/><path d="M0,35 Q100,10 200,35 T400,35 T600,35 T800,35" fill="none" stroke="%23ffffff" stroke-width="2" opacity="0.8"/></svg>') repeat-x;
-                background-size: 500px 100%;
-                animation: waveScrollX 4s linear infinite;
-                z-index: 2;
-            }
-            .top-wave-2 {
-                position: absolute;
-                top: 5px; left: 0; right: 0; height: 50px;
-                background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 60" preserveAspectRatio="none"><path d="M0,45 Q100,60 200,45 T400,45 T600,45 T800,45 L800,60 L0,60 Z" fill="%23002277"/><path d="M0,45 Q100,60 200,45 T400,45 T600,45 T800,45" fill="none" stroke="%233399ff" stroke-width="1.5" opacity="0.6"/></svg>') repeat-x;
-                background-size: 700px 100%;
-                animation: waveScrollX 6s linear infinite reverse;
-                z-index: 1;
-            }
-            .splash-front {
-                position: absolute;
-                top: 50%;
-                width: 80px; height: 150%;
-                transform: translate(-50%, -50%);
+                top: 0; bottom: 0;
+                width: 10px;
+                background: #ffffff;
+                box-shadow: 0 0 20px 10px rgba(0, 255, 255, 0.8), 0 0 40px 20px rgba(0, 255, 255, 0.4);
+                animation: neonPulse 1.5s infinite ease-in-out;
                 z-index: 3;
-            }
-            .splash-front::after {
-                content: '';
-                position: absolute; inset: 0;
-                background: linear-gradient(90deg, #0044cc, #00aaff);
-                border-radius: 40%;
-                animation: liquidSpin 1.5s linear infinite;
-                box-shadow: 0 0 25px rgba(0, 150, 255, 0.8);
-            }
-            .splash-front::before {
-                content: '';
-                position: absolute; inset: -10px;
-                background: rgba(0, 150, 255, 0.5);
-                border-radius: 45%;
-                animation: liquidSpin 2s linear infinite reverse;
+                transform: translateX(-50%);
             }
         `;
         document.head.appendChild(style);
     }
 
-    // Determine target width to ensure the water background spans the whole width instantly
+    // Determine target width to ensure the background spans the whole width instantly
     const isMobile = window.innerWidth <= 768;
     const targetWidth = isMobile ? window.innerWidth * 0.9 : window.innerWidth * 0.7;
 
-    // 1. Full-width realistic water container (static, but masked)
+    // 1. Full-width realistic container (static, but masked)
     const waterBg = document.createElement('div');
-    waterBg.className = 'water-bg-realistic';
+    waterBg.className = 'aqua-bar-bg';
     Object.assign(waterBg.style, {
         width: targetWidth + 'px',
     });
 
-    const topWave1 = document.createElement('div'); topWave1.className = 'top-wave-1';
-    const topWave2 = document.createElement('div'); topWave2.className = 'top-wave-2';
-    waterBg.appendChild(topWave2);
-    waterBg.appendChild(topWave1);
-
-    // 2. The Mask (Reveals the water left-to-right)
+    // 2. The Mask (Reveals the left-to-right)
     const liquidMask = document.createElement('div');
     Object.assign(liquidMask.style, {
         position: 'absolute',
         top: '0', bottom: '0', left: '0',
         width: '0%', // Animates from 0% to 100%
-        overflow: 'hidden', // Clips the waterBg perfectly
+        overflow: 'hidden', // Clips perfectly
         zIndex: '1',
     });
     liquidMask.appendChild(waterBg);
 
     // 3. The Front Splashing Edge (Covers the straight line of the mask)
     const splashFront = document.createElement('div');
-    splashFront.className = 'splash-front';
+    splashFront.className = 'glow-head';
     splashFront.style.left = '0%'; // Animates alongside the mask
 
     fakeBtn.appendChild(liquidMask);
@@ -510,12 +469,10 @@ function startEpicLiquidDownload(fakeBtn, toBtn, fromBtn) {
 
             // Remove the splashing blobs and mask clip when complete
             splashFront.style.display = 'none';
-            topWave1.style.display = 'none';
-            topWave2.style.display = 'none';
 
             // Celebration flash
             gsap.to(fakeBtn, {
-                boxShadow: '0 0 80px rgba(231,247,2,1), 0 0 120px rgba(0,85,255,0.6)',
+                boxShadow: '0 0 80px rgba(231,247,2,1), 0 0 120px rgba(0,255,255,0.6)',
                 duration: 0.2,
                 yoyo: true,
                 repeat: 3,

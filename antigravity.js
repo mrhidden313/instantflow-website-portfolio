@@ -24,8 +24,9 @@ export function initAntigravity(containerId, options = {}) {
   canvas.height = H;
 
   // ─── CONFIG ────────────────────────────────────────────────────
-  const GRID_SPACING  = 30;    
-  const DOT_RADIUS    = 2.5;     
+  const isMobile      = window.innerWidth <= 768;
+  const GRID_SPACING  = isMobile ? 70 : 30;    
+  const DOT_RADIUS    = isMobile ? 3.5 : 2.5;     
   const MOUSE_RADIUS  = 150;   
   const MAX_PUSH      = 60;    
   const RETURN_SPEED  = 0.05; 
