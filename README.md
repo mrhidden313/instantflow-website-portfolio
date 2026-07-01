@@ -1,3 +1,4 @@
+<div align="center">
   <a href="https://instantflow.online">
     <img src="cropped.jpg" alt="InstantFlow Logo" width="120" style="border-radius: 20px;" />
   </a>
