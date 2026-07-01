@@ -41,41 +41,48 @@ document.addEventListener("DOMContentLoaded", () => {
     // ═══════════════════════════════════════════════════════════════
     // 1.5 HERO INTRO ANIMATIONS (Letter Floating & Typewriter)
     // ═══════════════════════════════════════════════════════════════
-    function splitTextToSpans(element, charClass) {
-        const nodes = Array.from(element.childNodes);
-        element.innerHTML = '';
+    function splitTextToSpans(sourceNode, targetNode, charClass) {
+        const nodes = Array.from(sourceNode.childNodes);
         nodes.forEach(node => {
             if (node.nodeType === 3) {
                 const chars = node.textContent.split('');
                 chars.forEach(char => {
                     if (char === ' ') {
-                        element.appendChild(document.createTextNode(' '));
+                        targetNode.appendChild(document.createTextNode(' '));
                     } else {
                         const span = document.createElement('span');
                         span.className = charClass;
                         span.style.display = 'inline-block';
                         span.textContent = char;
-                        element.appendChild(span);
+                        targetNode.appendChild(span);
                     }
                 });
             } else if (node.nodeType === 1) {
                 if (node.tagName.toLowerCase() === 'br') {
-                    element.appendChild(node);
+                    targetNode.appendChild(document.createElement('br'));
                 } else {
                     const wrapper = document.createElement(node.tagName);
                     wrapper.className = node.className;
-                    element.appendChild(wrapper);
-                    splitTextToSpans(node, charClass); 
+                    targetNode.appendChild(wrapper);
+                    splitTextToSpans(node, wrapper, charClass); 
                 }
             }
         });
     }
 
     const h1El = document.querySelector('h1');
-    if (h1El) splitTextToSpans(h1El, 'h1-char');
+    if (h1El) {
+        const clone = h1El.cloneNode(true);
+        h1El.innerHTML = '';
+        splitTextToSpans(clone, h1El, 'h1-char');
+    }
 
     const pEl = document.querySelector('.hero p');
-    if (pEl) splitTextToSpans(pEl, 'p-char');
+    if (pEl) {
+        const clone = pEl.cloneNode(true);
+        pEl.innerHTML = '';
+        splitTextToSpans(clone, pEl, 'p-char');
+    }
 
     const heroTl = gsap.timeline({ delay: 0.1 });
 
