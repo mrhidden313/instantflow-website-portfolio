@@ -22,7 +22,11 @@
   <link rel="apple-touch-icon" href="cropped.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css">
+  <!-- Force No-Cache for Mobile -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="stylesheet" href="styles.css?v=6.0">
 
   <!-- Outcrowd Advanced Animation Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -352,7 +356,7 @@
   </footer>
 
 
-  <script src="main.js"></script>
+  <script src="main.js?v=6.0"></script>
   <div id="custom-chat-btn" class="custom-chat-btn" aria-label="Open Chat">
     <div class="chat-icon">💬</div>
   </div>
@@ -391,8 +395,8 @@
     });
   </script>
   <script type="module">
-    import { initAntigravity } from './antigravity.js?v=5';
+    import { initAntigravity } from './antigravity.js?v=6.0';
     initAntigravity('antigravity-container', { count: 800, autoAnimate: true, rotationSpeed: 0.2, magnetRadius: 15, ringRadius: 10, waveSpeed: 0.2, lerpSpeed: 0.05 });
   </script>
-  <script src="outcrowd.js?v=3"></script>
+  <script src="outcrowd.js?v=6.0"></script>
 </body>
