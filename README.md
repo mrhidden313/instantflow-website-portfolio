@@ -1,6 +1,5 @@
-<div align="center">
   <a href="https://instantflow.online">
-    <img src="https://instantflow.online/icon-192.png" alt="InstantFlow Logo" width="120" style="border-radius: 20px;" />
+    <img src="cropped.jpg" alt="InstantFlow Logo" width="120" style="border-radius: 20px;" />
   </a>
   
   <h1>🚀 InstantFlow — Anti-Ban WhatsApp Business API</h1>
