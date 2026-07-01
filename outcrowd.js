@@ -38,6 +38,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ═══════════════════════════════════════════════════════════════
+    // 1.5 HERO INTRO ANIMATIONS (3D Word Reveal, FadeUp, Zoom Blur)
+    // ═══════════════════════════════════════════════════════════════
+    const heroTl = gsap.timeline({ delay: 0.1 });
+
+    // 1. Zoom Blur Variant on Badge
+    heroTl.fromTo('.hero-badge', 
+        { opacity: 0, scale: 0.8, filter: 'blur(12px)', y: 30 },
+        { opacity: 1, scale: 1, filter: 'blur(0px)', y: 0, duration: 0.9, ease: 'expo.out', clearProps: isMobileDevice ? 'filter' : '' }
+    );
+
+    // 2. SplitHeading 3D Reveal on Words
+    heroTl.fromTo('.split-word', 
+        { opacity: 0, y: 45, rotateX: 65, scale: 0.9 },
+        { opacity: 1, y: 0, rotateX: 0, scale: 1, duration: 0.85, stagger: 0.06, ease: 'back.out(1.5)' },
+        "-=0.6"
+    );
+
+    // 3. Pronounced FadeUp on Paragraph and Buttons
+    heroTl.fromTo('.hero p', 
+        { opacity: 0, y: 40, scale: 0.97 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'expo.out' },
+        "-=0.5"
+    );
+    heroTl.fromTo('.hero-btns', 
+        { opacity: 0, y: 40, scale: 0.97 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'expo.out' },
+        "-=0.7"
+    );
+
+    // ═══════════════════════════════════════════════════════════════
     // 2. 3D SCROLL PARALLAX — Objects move as you scroll
     // ═══════════════════════════════════════════════════════════════
     const parallaxTargets = isMobileDevice ? [

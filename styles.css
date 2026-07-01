@@ -276,7 +276,6 @@
       font-weight: 600;
       letter-spacing: .5px;
       margin-bottom: 2rem;
-      animation: fadeUp .8s ease both
     }
 
     .hero-badge span {
@@ -309,7 +308,6 @@
       letter-spacing: -2.5px;
       max-width: 900px;
       margin-bottom: 1.5rem;
-      animation: fadeUp .8s .1s ease both
     }
 
     h1 em {
@@ -324,7 +322,6 @@
       max-width: 520px;
       line-height: 1.75;
       margin-bottom: 2.5rem;
-      animation: fadeUp .8s .2s ease both
     }
 
     .hero-btns {
@@ -332,7 +329,6 @@
       gap: 1rem;
       flex-wrap: wrap;
       justify-content: center;
-      animation: fadeUp .8s .3s ease both;
     }
 
     .btn-y {
