@@ -25,22 +25,22 @@ export function initAntigravity(containerId, options = {}) {
 
   // ─── CONFIG ────────────────────────────────────────────────────
   const isMobile      = window.innerWidth <= 768;
-  const GRID_SPACING  = isMobile ? 70 : 30;    
-  const DOT_RADIUS    = isMobile ? 3.5 : 2.5;     
-  const MOUSE_RADIUS  = 150;   
-  const MAX_PUSH      = 60;    
+  const GRID_SPACING  = isMobile ? 120 : 25;   // PC gets more dots (25), Mobile gets less (120)
+  const DOT_RADIUS    = isMobile ? 3.0 : 2.5;     
+  const MOUSE_RADIUS  = isMobile ? 0 : 180;    // PC gets larger interaction area
+  const MAX_PUSH      = isMobile ? 0 : 80;     // PC gets stronger push
   const RETURN_SPEED  = 0.05; 
   const PUSH_SPEED    = 0.2;  
   const FADE_SPEED    = 0.15;  
   const BASE_OPACITY  = 0.0;  // Hidden by default, only visible near mouse
   const MAX_OPACITY   = 1.0;   
-  const GLOW_BLUR     = 15;    
+  const GLOW_BLUR     = isMobile ? 0 : 20;     // NO shadow blur on Mobile (Massive Performance boost)
   const COLOR         = '#e7f702';
   
   // Ripple Config (Water drop effect)
   const RIPPLE_SPEED  = 9.5;   // 40% slower
-  const RIPPLE_WIDTH  = 80;
-  const RIPPLE_FORCE  = 120; // Gentler push
+  const RIPPLE_WIDTH  = isMobile ? 40 : 100;
+  const RIPPLE_FORCE  = isMobile ? 50 : 140; // Gentler push
   // ───────────────────────────────────────────────────────────────
 
   let dots = [];
@@ -106,9 +106,11 @@ export function initAntigravity(containerId, options = {}) {
       ctx.stroke();
     }
 
-    // Oily glow effect
-    ctx.shadowColor  = COLOR;
-    ctx.shadowBlur   = GLOW_BLUR;
+    // Oily glow effect (Mobile bypasses heavy shadow rendering)
+    if (!isMobile) {
+      ctx.shadowColor  = COLOR;
+      ctx.shadowBlur   = GLOW_BLUR;
+    }
     ctx.fillStyle    = COLOR;
 
     for (const d of dots) {

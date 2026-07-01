@@ -9,29 +9,33 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo(0, 0);
 
     // ═══════════════════════════════════════════════════════════════
-    // 1. LENIS — Butter-smooth scroll
+    // 1. LENIS — Butter-smooth scroll (PC ONLY)
     // ═══════════════════════════════════════════════════════════════
-    window._lenis = new Lenis({
-        duration: 1.4,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        smooth: true,
-        mouseMultiplier: 1,
-        smoothTouch: false,
-        infinite: false,
-    });
-
-    const lenis = window._lenis;
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
+    const isMobileDevice = window.innerWidth <= 768;
     gsap.registerPlugin(ScrollTrigger);
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-    gsap.ticker.lagSmoothing(0, 0);
+
+    if (!isMobileDevice) {
+        window._lenis = new Lenis({
+            duration: 1.4,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            infinite: false,
+        });
+
+        const lenis = window._lenis;
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0, 0);
+    }
 
     // ═══════════════════════════════════════════════════════════════
     // 2. 3D SCROLL PARALLAX — Objects move as you scroll
