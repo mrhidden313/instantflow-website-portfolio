@@ -40,7 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // ═══════════════════════════════════════════════════════════════
     // 2. 3D SCROLL PARALLAX — Objects move as you scroll
     // ═══════════════════════════════════════════════════════════════
-    const parallaxTargets = [
+    const parallaxTargets = isMobileDevice ? [
+        { selector: '.orb1', yFactor: -0.08, xFactor: 0.03 },
+        { selector: '.orb2', yFactor: 0.06, xFactor: -0.04 }
+    ] : [
         { selector: '.orb1', yFactor: -0.08, xFactor: 0.03 },
         { selector: '.orb2', yFactor: 0.06, xFactor: -0.04 },
         { selector: '.hero-badge', yFactor: -0.04, scale: true },
@@ -81,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 duration: 0.85,
                 delay: (i % 4) * 0.1,
                 ease: 'power3.out',
+                clearProps: isMobileDevice ? 'transform' : '',
                 scrollTrigger: {
                     trigger: el,
                     start: 'top 88%',
