@@ -38,33 +38,71 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ═══════════════════════════════════════════════════════════════
-    // 1.5 HERO INTRO ANIMATIONS (3D Word Reveal, FadeUp, Zoom Blur)
     // ═══════════════════════════════════════════════════════════════
+    // 1.5 HERO INTRO ANIMATIONS (Letter Floating & Typewriter)
+    // ═══════════════════════════════════════════════════════════════
+    function splitTextToSpans(element, charClass) {
+        const nodes = Array.from(element.childNodes);
+        element.innerHTML = '';
+        nodes.forEach(node => {
+            if (node.nodeType === 3) {
+                const chars = node.textContent.split('');
+                chars.forEach(char => {
+                    if (char === ' ') {
+                        element.appendChild(document.createTextNode(' '));
+                    } else {
+                        const span = document.createElement('span');
+                        span.className = charClass;
+                        span.style.display = 'inline-block';
+                        span.textContent = char;
+                        element.appendChild(span);
+                    }
+                });
+            } else if (node.nodeType === 1) {
+                if (node.tagName.toLowerCase() === 'br') {
+                    element.appendChild(node);
+                } else {
+                    const wrapper = document.createElement(node.tagName);
+                    wrapper.className = node.className;
+                    element.appendChild(wrapper);
+                    splitTextToSpans(node, charClass); 
+                }
+            }
+        });
+    }
+
+    const h1El = document.querySelector('h1');
+    if (h1El) splitTextToSpans(h1El, 'h1-char');
+
+    const pEl = document.querySelector('.hero p');
+    if (pEl) splitTextToSpans(pEl, 'p-char');
+
     const heroTl = gsap.timeline({ delay: 0.1 });
 
-    // 1. Zoom Blur Variant on Badge
     heroTl.fromTo('.hero-badge', 
         { opacity: 0, scale: 0.8, filter: 'blur(12px)', y: 30 },
         { opacity: 1, scale: 1, filter: 'blur(0px)', y: 0, duration: 0.9, ease: 'expo.out', clearProps: isMobileDevice ? 'filter' : '' }
     );
 
-    // 2. SplitHeading 3D Reveal on Words
-    heroTl.fromTo('.split-word', 
-        { opacity: 0, y: 45, rotateX: 65, scale: 0.9 },
-        { opacity: 1, y: 0, rotateX: 0, scale: 1, duration: 0.85, stagger: 0.06, ease: 'back.out(1.5)' },
+    // Bouncy Letter-by-Letter floating animation
+    heroTl.fromTo('.h1-char', 
+        { opacity: 0, y: 60, rotateX: -90, scale: 0.5 },
+        { opacity: 1, y: 0, rotateX: 0, scale: 1, duration: 1.2, stagger: 0.035, ease: 'back.out(1.8)', transformOrigin: '50% 100%' },
         "-=0.6"
     );
 
-    // 3. Pronounced FadeUp on Paragraph and Buttons
-    heroTl.fromTo('.hero p', 
-        { opacity: 0, y: 40, scale: 0.97 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'expo.out' },
-        "-=0.5"
+    // Typewriter effect
+    heroTl.fromTo('.p-char', 
+        { opacity: 0 },
+        { opacity: 1, duration: 0.01, stagger: 0.015, ease: 'none' },
+        "-=0.4"
     );
+
+    // FadeUp Buttons
     heroTl.fromTo('.hero-btns', 
         { opacity: 0, y: 40, scale: 0.97 },
         { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'expo.out' },
-        "-=0.7"
+        "-=0.3"
     );
 
     // ═══════════════════════════════════════════════════════════════
