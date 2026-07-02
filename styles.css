@@ -1409,6 +1409,11 @@
 
     /* ── 768px – TABLET ── */
     @media(max-width:768px) {
+      /* Mobile tap target optimizations */
+      a, button { touch-action: manipulation; }
+      .mob-link { padding: 1.5rem 2rem; font-size: 1.2rem; }
+      p, .fc2 { font-size: 1rem !important; }
+      .tf-text { font-size: 1rem !important; }
       nav {
         top: 8px;
         width: calc(100% - 20px);
