@@ -77,6 +77,48 @@
       .main-hero-title { font-size: 2.8rem !important; }
       .hero-subtext, .hero-br { display: none !important; }
     }
+    /* FAQ Accordion Styles */
+    .faq-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .faq-item[open] {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(231,247,2,0.3);
+    }
+    .faq-question {
+      padding: 20px 25px;
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+    }
+    .faq-question::-webkit-details-marker {
+      display: none;
+    }
+    .faq-icon {
+      color: #e7f702;
+      font-size: 1.8rem;
+      font-weight: 300;
+      transition: transform 0.3s ease;
+      line-height: 1;
+    }
+    .faq-item[open] .faq-icon {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      padding: 0 25px 25px 25px;
+      color: #8696a0;
+      line-height: 1.6;
+    }
+    .faq-answer p { margin-top: 15px; }
   </style>
 </head>
 
@@ -340,70 +382,67 @@
       <h2 style="font-size: 3rem; color: #fff;">Frequently Asked <span style="color: var(--y); font-style: italic;">Questions</span></h2>
       <p style="color: #8696a0; font-size: 1.2rem; margin-top: 15px;">Everything you need to know about WhatsApp Marketing and Automation.</p>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+    <div style="display: flex; flex-direction: column; gap: 15px; max-width: 900px; margin: 0 auto;">
       
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 15px;">Which is the best WhatsApp CRM?</h3>
-        <p style="color: #8696a0; line-height: 1.6;">InstantFlow is widely considered the best WhatsApp CRM because it combines an Unlimited Team Inbox, No-Code AI Chatbot Builder, and powerful Bulk Broadcasting features into a single, affordable SaaS platform.</p>
-      </div>
+      <details class="faq-item">
+        <summary class="faq-question">Which is the best WhatsApp CRM?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>InstantFlow is widely considered the best WhatsApp CRM because it combines an Unlimited Team Inbox, No-Code AI Chatbot Builder, and powerful Bulk Broadcasting features into a single, affordable SaaS platform.</p></div>
+      </details>
 
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 15px;">How to send 1000 WhatsApp messages at once?</h3>
-        <p style="color: #8696a0; line-height: 1.6;">Using InstantFlow's advanced broadcasting engine, you can simply upload an Excel/CSV file of your contacts, select an approved template, and hit send. Our anti-ban queue ensures all bulk messages are delivered safely without violating policies.</p>
-      </div>
+      <details class="faq-item">
+        <summary class="faq-question">How to send 1000 WhatsApp messages at once?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>Using InstantFlow's advanced broadcasting engine, you can simply upload an Excel/CSV file of your contacts, select an approved template, and hit send. Our anti-ban queue ensures all bulk messages are delivered safely without violating policies.</p></div>
+      </details>
 
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 15px;">Is WhatsApp CRM free?</h3>
-        <p style="color: #8696a0; line-height: 1.6;">While Meta provides a free basic WhatsApp Business App, a true Official API CRM is not entirely free due to Meta's conversation costs. However, InstantFlow offers the most competitive, transparent pricing without hidden per-agent markup fees.</p>
-      </div>
+      <details class="faq-item">
+        <summary class="faq-question">Is WhatsApp CRM free?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>While Meta provides a free basic WhatsApp Business App, a true Official API CRM is not entirely free due to Meta's conversation costs. However, InstantFlow offers the most competitive, transparent pricing without hidden per-agent markup fees.</p></div>
+      </details>
 
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 15px;">How to make a WhatsApp auto reply bot?</h3>
-        <p style="color: #8696a0; line-height: 1.6;">With InstantFlow, you can build a powerful WhatsApp auto-reply bot without any coding. Our visual drag-and-drop workflow builder lets you set up keyword triggers, AI responses, and human-agent handoffs in minutes.</p>
-      </div>
+      <details class="faq-item">
+        <summary class="faq-question">How to make a WhatsApp auto reply bot?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>With InstantFlow, you can build a powerful WhatsApp auto-reply bot without any coding. Our visual drag-and-drop workflow builder lets you set up keyword triggers, AI responses, and human-agent handoffs in minutes.</p></div>
+      </details>
 
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 15px;">Does WhatsApp have a CRM?</h3>
-        <p style="color: #8696a0; line-height: 1.6;">WhatsApp itself does not provide a native CRM. Meta only provides the raw API. You need a verified BSP software like InstantFlow to act as the CRM interface, allowing your team to manage chats, tags, and campaigns efficiently.</p>
-      </div>
+      <details class="faq-item">
+        <summary class="faq-question">Does WhatsApp have a CRM?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>WhatsApp itself does not provide a native CRM. Meta only provides the raw API. You need a verified BSP software like InstantFlow to act as the CRM interface, allowing your team to manage chats, tags, and campaigns efficiently.</p></div>
+      </details>
 
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 15px;">Cheapest WhatsApp Official API provider?</h3>
-        <p style="color: #8696a0; line-height: 1.6;">InstantFlow stands out as one of the most cost-effective and affordable WhatsApp Official API platforms globally. By eliminating per-agent seats and hidden message markups, we ensure maximum ROI for your marketing budget.</p>
-      </div>
+      <details class="faq-item">
+        <summary class="faq-question">Cheapest WhatsApp Official API provider?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>InstantFlow stands out as one of the most cost-effective and affordable WhatsApp Official API platforms globally. By eliminating per-agent seats and hidden message markups, we ensure maximum ROI for your marketing budget.</p></div>
+      </details>
 
-      <!-- Green Tick Verification -->
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 15px;">How to get green tick verification on WhatsApp?</h3>
-        <p style="color: #8696a0; line-height: 1.6;">To get the coveted Green Check Mark, you need to use an Official Business API provider like InstantFlow, have a verified Meta Business Manager, and possess notable press coverage showing you are a recognized brand. InstantFlow assists you in applying for the Green Tick for free once eligible.</p>
-      </div>
+      <details class="faq-item">
+        <summary class="faq-question">How to get green tick verification on WhatsApp?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>To get the coveted Green Check Mark, you need to use an Official Business API provider like InstantFlow, have a verified Meta Business Manager, and possess notable press coverage showing you are a recognized brand. InstantFlow assists you in applying for the Green Tick for free once eligible.</p></div>
+      </details>
 
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 15px;">Why is my WhatsApp taking long to verify?</h3>
-        <p style="color: #8696a0; line-height: 1.6;">Meta manually reviews WhatsApp Green Tick applications. Delays often happen if your website does not clearly state your business address or if you lack sufficient organic press articles. Our team at InstantFlow can audit your profile to ensure quick verification.</p>
-      </div>
+      <details class="faq-item">
+        <summary class="faq-question">Why is my WhatsApp taking long to verify?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>Meta manually reviews WhatsApp Green Tick applications. Delays often happen if your website does not clearly state your business address or if you lack sufficient organic press articles. Our team at InstantFlow can audit your profile to ensure quick verification.</p></div>
+      </details>
 
-      <!-- Cloud vs On-Premise -->
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 15px;">What is the difference between Cloud API and on premise API?</h3>
-        <p style="color: #8696a0; line-height: 1.6;">The On-Premise API requires you to host your own expensive servers and manage Docker containers, causing downtime and high maintenance costs. The WhatsApp Cloud API, which InstantFlow uses, is hosted directly by Meta, offering 99.9% uptime, faster message delivery, and zero server costs.</p>
-      </div>
+      <details class="faq-item">
+        <summary class="faq-question">What is the difference between Cloud API and on premise API?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>The On-Premise API requires you to host your own expensive servers and manage Docker containers, causing downtime and high maintenance costs. The WhatsApp Cloud API, which InstantFlow uses, is hosted directly by Meta, offering 99.9% uptime, faster message delivery, and zero server costs.</p></div>
+      </details>
 
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 15px;">Which is better WhatsApp Business API or Cloud API?</h3>
-        <p style="color: #8696a0; line-height: 1.6;">The WhatsApp Cloud API is definitively better for 99% of businesses. It is faster, more secure, and automatically scales without manual server upgrades. InstantFlow is built entirely on the Cloud API to guarantee maximum performance and reliability.</p>
-      </div>
+      <details class="faq-item">
+        <summary class="faq-question">Which is better WhatsApp Business API or Cloud API?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>The WhatsApp Cloud API is definitively better for 99% of businesses. It is faster, more secure, and automatically scales without manual server upgrades. InstantFlow is built entirely on the Cloud API to guarantee maximum performance and reliability.</p></div>
+      </details>
 
-      <!-- CRM Integration -->
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 15px;">How to integrate WhatsApp with CRM?</h3>
-        <p style="color: #8696a0; line-height: 1.6;">You can seamlessly integrate WhatsApp into your CRM using InstantFlow's open Webhooks and API endpoints. Whether you use HubSpot, Salesforce, or Zoho, InstantFlow acts as the bridge to sync all customer conversations directly into your existing tech stack.</p>
-      </div>
+      <details class="faq-item">
+        <summary class="faq-question">How to integrate WhatsApp with CRM?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>You can seamlessly integrate WhatsApp into your CRM using InstantFlow's open Webhooks and API endpoints. Whether you use HubSpot, Salesforce, or Zoho, InstantFlow acts as the bridge to sync all customer conversations directly into your existing tech stack.</p></div>
+      </details>
 
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-        <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 15px;">What is the difference between WhatsApp API and WhatsApp CRM?</h3>
-        <p style="color: #8696a0; line-height: 1.6;">The WhatsApp API is just the backend connection provided by Meta; it has no graphical interface. A WhatsApp CRM (like InstantFlow) is the front-end software layered on top of the API, giving your agents a visual dashboard, chatbot builder, and inbox to actually talk to customers.</p>
-      </div>
+      <details class="faq-item">
+        <summary class="faq-question">What is the difference between WhatsApp API and WhatsApp CRM?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>The WhatsApp API is just the backend connection provided by Meta; it has no graphical interface. A WhatsApp CRM (like InstantFlow) is the front-end software layered on top of the API, giving your agents a visual dashboard, chatbot builder, and inbox to actually talk to customers.</p></div>
+      </details>
 
     </div>
   </section>
