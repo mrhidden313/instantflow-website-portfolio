@@ -1,0 +1,7 @@
+{
+  "versionCode": 55,
+  "versionName": "5.5",
+  "downloadUrl": "https://instantflow.online/app-release.apk",
+  "forceUpdate": false,
+  "releaseNotes": "Fix Android Safe Area overlap and Wipe Chat button UX."
+}
