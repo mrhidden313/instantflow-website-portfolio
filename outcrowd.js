@@ -45,16 +45,26 @@ document.addEventListener("DOMContentLoaded", () => {
         const nodes = Array.from(sourceNode.childNodes);
         nodes.forEach(node => {
             if (node.nodeType === 3) {
-                const chars = node.textContent.split('');
-                chars.forEach(char => {
-                    if (char === ' ') {
-                        targetNode.appendChild(document.createTextNode(' '));
+                const text = node.textContent;
+                // Split by spaces, preserving spaces
+                const words = text.split(/(\s+)/);
+                words.forEach(word => {
+                    if (word.trim() === '') {
+                        targetNode.appendChild(document.createTextNode(word));
                     } else {
-                        const span = document.createElement('span');
-                        span.className = charClass;
-                        span.style.display = 'inline-block';
-                        span.textContent = char;
-                        targetNode.appendChild(span);
+                        const wordSpan = document.createElement('span');
+                        wordSpan.style.display = 'inline-block';
+                        wordSpan.style.whiteSpace = 'nowrap';
+                        
+                        const chars = word.split('');
+                        chars.forEach(char => {
+                            const span = document.createElement('span');
+                            span.className = charClass;
+                            span.style.display = 'inline-block';
+                            span.textContent = char;
+                            wordSpan.appendChild(span);
+                        });
+                        targetNode.appendChild(wordSpan);
                     }
                 });
             } else if (node.nodeType === 1) {
@@ -93,8 +103,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Bouncy Letter-by-Letter floating animation
     heroTl.fromTo('.h1-char', 
-        { opacity: 0, y: 60, rotateX: -90, scale: 0.5 },
-        { opacity: 1, y: 0, rotateX: 0, scale: 1, duration: 1.2, stagger: 0.035, ease: 'back.out(1.8)', transformOrigin: '50% 100%' },
+        { opacity: 0, y: isMobileDevice ? 20 : 60, rotateX: -90, scale: 0.5 },
+        { opacity: 1, y: 0, rotateX: 0, scale: 1, duration: isMobileDevice ? 0.8 : 1.2, stagger: 0.035, ease: 'back.out(1.8)', transformOrigin: '50% 100%' },
         "-=0.6"
     );
 
@@ -131,74 +141,82 @@ document.addEventListener("DOMContentLoaded", () => {
         { selector: '.ssub', yFactor: -0.015 },
     ];
 
-    parallaxTargets.forEach(t => {
-        gsap.utils.toArray(t.selector).forEach((el, i) => {
-            gsap.to(el, {
-                y: () => (window.innerHeight) * t.yFactor,
-                x: () => t.xFactor ? (window.innerWidth) * t.xFactor : 0,
-                scale: t.scale ? 1.08 : 1,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: el,
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: 1.2,
-                }
+    if (!isMobileDevice) {
+        parallaxTargets.forEach(t => {
+            gsap.utils.toArray(t.selector).forEach((el, i) => {
+                gsap.to(el, {
+                    y: () => (window.innerHeight) * t.yFactor,
+                    x: () => t.xFactor ? (window.innerWidth) * t.xFactor : 0,
+                    scale: t.scale ? 1.08 : 1,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: 1.2,
+                    }
+                });
             });
         });
-    });
+    }
 
     // ═══════════════════════════════════════════════════════════════
     // 3. SCROLL-TRIGGERED REVEAL ANIMATIONS
     // ═══════════════════════════════════════════════════════════════
-    gsap.utils.toArray('.fc, .bc, .step, .pc').forEach((el, i) => {
-        gsap.fromTo(el,
-            { y: 70, opacity: 0, rotateX: 10, scale: 0.96 },
-            {
-                y: 0, opacity: 1, rotateX: 0, scale: 1,
-                duration: 0.85,
-                delay: (i % 4) * 0.1,
-                ease: 'power3.out',
-                clearProps: isMobileDevice ? 'transform' : '',
-                scrollTrigger: {
-                    trigger: el,
-                    start: 'top 88%',
-                    toggleActions: 'play none none reverse',
+    if (!isMobileDevice) {
+        gsap.utils.toArray('.fc, .bc, .step, .pc').forEach((el, i) => {
+            gsap.fromTo(el,
+                { y: 70, opacity: 0, rotateX: 10, scale: 0.96 },
+                {
+                    y: 0, opacity: 1, rotateX: 0, scale: 1,
+                    duration: 0.85,
+                    delay: (i % 4) * 0.1,
+                    ease: 'power3.out',
+                    clearProps: 'transform',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 88%',
+                        toggleActions: 'play none none reverse',
+                    }
                 }
-            }
-        );
-    });
+            );
+        });
 
-    gsap.utils.toArray('h2.stit, .ssub, .stag').forEach((el, i) => {
-        gsap.fromTo(el,
-            { y: 35, opacity: 0 },
-            {
-                y: 0, opacity: 1,
-                duration: 0.9,
-                delay: i * 0.08,
-                ease: 'power4.out',
-                scrollTrigger: { trigger: el, start: 'top 90%' }
-            }
-        );
-    });
+        gsap.utils.toArray('h2.stit, .ssub, .stag').forEach((el, i) => {
+            gsap.fromTo(el,
+                { y: 35, opacity: 0 },
+                {
+                    y: 0, opacity: 1,
+                    duration: 0.9,
+                    delay: i * 0.08,
+                    ease: 'power4.out',
+                    scrollTrigger: { trigger: el, start: 'top 90%' }
+                }
+            );
+        });
 
-    gsap.utils.toArray('.stat').forEach((el, i) => {
-        gsap.fromTo(el,
-            { y: 40, opacity: 0, scale: 0.9 },
-            {
-                y: 0, opacity: 1, scale: 1,
-                duration: 0.7,
-                delay: i * 0.12,
-                ease: 'back.out(1.4)',
-                scrollTrigger: { trigger: el, start: 'top 92%' }
-            }
-        );
-    });
+        gsap.utils.toArray('.stat').forEach((el, i) => {
+            gsap.fromTo(el,
+                { y: 40, opacity: 0, scale: 0.9 },
+                {
+                    y: 0, opacity: 1, scale: 1,
+                    duration: 0.7,
+                    delay: i * 0.12,
+                    ease: 'back.out(1.4)',
+                    scrollTrigger: { trigger: el, start: 'top 92%' }
+                }
+            );
+        });
+    } else {
+        // Fallback for mobile: Ensure all elements are fully visible immediately without scroll scrubbing
+        gsap.set('.fc, .bc, .step, .pc, h2.stit, .ssub, .stag, .stat', { opacity: 1, y: 0, rotateX: 0, scale: 1 });
+    }
 
     // ═══════════════════════════════════════════════════════════════
     // 3.5 3D CARD TILT ON HOVER (Kept because you liked it before)
     // ═══════════════════════════════════════════════════════════════
-    document.addEventListener('mousemove', (e) => {
+    if (!isMobileDevice) {
+        document.addEventListener('mousemove', (e) => {
         document.querySelectorAll('.fc, .bc, .stat, .step, .pc').forEach(card => {
             const r = card.getBoundingClientRect();
             const cx = r.left + r.width / 2;
@@ -227,12 +245,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
         });
-    });
+        });
+    }
 
     // ═══════════════════════════════════════════════════════════════
     // 4. MAGNETIC BUTTONS
     // ═══════════════════════════════════════════════════════════════
-    document.querySelectorAll('.btn-y, .btn-g, .nav-cta').forEach(btn => {
+    if (!isMobileDevice) {
+        document.querySelectorAll('.btn-y, .btn-g, .nav-cta').forEach(btn => {
         btn.addEventListener('mousemove', (e) => {
             const r = btn.getBoundingClientRect();
             const x = e.clientX - r.left - r.width / 2;
@@ -243,6 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
             gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.4)' });
         });
     });
+    }
 
     // ═══════════════════════════════════════════════════════════════
     // 5. CINEMATIC ZOOM-IN SCROLLING DOWNLOAD SEQUENCE
@@ -319,100 +340,134 @@ function startCinematicSequence(heroBtn, ctaBtn) {
     const isMobile = window.innerWidth <= 768;
     const clientWidth = document.documentElement.clientWidth || window.innerWidth;
     const clientHeight = document.documentElement.clientHeight || window.innerHeight;
-    const largeWidth = isMobile ? clientWidth * 0.9 : clientWidth * 0.6;
-    const largeHeight = isMobile ? 80 : 96;
-    const centerX = (clientWidth - largeWidth) / 2;
-    const centerY = (clientHeight - largeHeight) / 2;
+    
+    if (isMobile) {
+        const largeWidth = clientWidth * 0.9;
+        const largeHeight = 80;
+        const centerX = (clientWidth - largeWidth) / 2;
+        const centerY = (clientHeight - largeHeight) / 2;
 
-    const tl = gsap.timeline();
+        const tl = gsap.timeline();
 
-    // ── STEP 1: ZOOM IN (GROW LARGE AND CENTER ON SCREEN)
-    // Using left/top guarantees perfectly accurate centering without math errors
-    tl.to(fakeBtn, {
-        left: centerX + 'px',
-        top: centerY + 'px',
-        width: largeWidth + 'px',
-        height: largeHeight + 'px',
-        borderRadius: '24px',
-        duration: 1.2,
-        ease: 'power3.inOut',
-    }, 'zoomIn');
+        tl.to(fakeBtn, {
+            left: centerX + 'px',
+            top: centerY + 'px',
+            width: largeWidth + 'px',
+            height: largeHeight + 'px',
+            borderRadius: '24px',
+            duration: 0.8,
+            ease: 'power3.inOut',
+        }, 'zoomIn');
 
-    tl.to(textSpan, {
-        scale: 1.5,
-        duration: 1.2,
-        ease: 'power3.inOut',
-    }, 'zoomIn');
+        tl.to(textSpan, {
+            scale: 1.2,
+            duration: 0.8,
+            ease: 'power3.inOut',
+        }, 'zoomIn');
 
-    // ── STEP 2: HOLD LARGE AND AUTO-SCROLL DOWN
-    tl.to(fakeBtn, {
-        duration: 3.5, // Hold its position in the center while scrolling
-        onStart: () => {
-            window._lenis?.scrollTo(ctaBtn, { offset: -150, duration: 3.5 });
-        }
-    });
+        tl.to(fakeBtn, {
+            duration: 0.2,
+            delay: 0.2,
+            onStart: () => {
+                gsap.to(textSpan, { opacity: 0, duration: 0.2 });
+                startEpicLiquidDownload(fakeBtn, null, heroBtn, true);
+            }
+        });
 
-    // ── STEP 3: ZOOM OUT (SHRINK AND TOUCH BOTTOM BUTTON)
-    tl.to(fakeBtn, {
-        duration: 1.0,
-        ease: 'power3.inOut',
-        onStart: () => {
-            const targetRect = ctaBtn.getBoundingClientRect();
-            // Using left/top exactly locks onto the CTA button
-            gsap.to(fakeBtn, {
-                left: targetRect.left + 'px',
-                top: targetRect.top + 'px',
-                width: targetRect.width + 'px',
-                height: targetRect.height + 'px',
-                borderRadius: '16px',
-                duration: 1.0,
-                ease: 'power3.inOut'
-            });
-            gsap.to(textSpan, {
-                scale: 1.0,
-                duration: 1.0,
-                ease: 'power3.inOut'
-            });
-        },
-        onComplete: () => {
-            gsap.to(fakeBtn, { boxShadow: '0 0 80px rgba(231,247,2,1)', duration: 0.15, yoyo: true, repeat: 1 });
-        }
-    });
+    } else {
+        const largeWidth = clientWidth * 0.6;
+        const largeHeight = 96;
+        const centerX = (clientWidth - largeWidth) / 2;
+        const centerY = (clientHeight - largeHeight) / 2;
 
-    // ── STEP 4: GROW BACK INTO LIQUID LOADING BAR
-    tl.to(fakeBtn, {
-        duration: 0.8,
-        delay: 0.1, // Tiny pause after touching
-        ease: 'power3.inOut',
-        onStart: () => {
-            const targetRect = ctaBtn.getBoundingClientRect();
-            const vw70 = isMobile ? window.innerWidth * 0.9 : window.innerWidth * 0.7;
-            const newX = (window.innerWidth - vw70) / 2;
-            const finalHeight = isMobile ? Math.max(targetRect.height, 80) : Math.max(targetRect.height, 96);
+        const tl = gsap.timeline();
 
-            gsap.to(textSpan, { opacity: 0, duration: 0.2 });
+        // ── STEP 1: ZOOM IN (GROW LARGE AND CENTER ON SCREEN)
+        tl.to(fakeBtn, {
+            left: centerX + 'px',
+            top: centerY + 'px',
+            width: largeWidth + 'px',
+            height: largeHeight + 'px',
+            borderRadius: '24px',
+            duration: 1.2,
+            ease: 'power3.inOut',
+        }, 'zoomIn');
 
-            gsap.to(fakeBtn, {
-                left: newX + 'px',
-                top: targetRect.top + 'px',
-                width: vw70 + 'px',
-                height: finalHeight + 'px',
-                borderRadius: '22px',
-                duration: 0.8,
-                ease: 'power3.inOut',
-                onComplete: () => {
-                    startEpicLiquidDownload(fakeBtn, ctaBtn, heroBtn);
-                }
-            });
-        }
-    });
+        tl.to(textSpan, {
+            scale: 1.5,
+            duration: 1.2,
+            ease: 'power3.inOut',
+        }, 'zoomIn');
+
+        // ── STEP 2: HOLD LARGE AND AUTO-SCROLL DOWN
+        tl.to(fakeBtn, {
+            duration: 3.5, 
+            onStart: () => {
+                window._lenis?.scrollTo(ctaBtn, { offset: -150, duration: 3.5 });
+            }
+        });
+
+        // ── STEP 3: ZOOM OUT (SHRINK AND TOUCH BOTTOM BUTTON)
+        tl.to(fakeBtn, {
+            duration: 1.0,
+            ease: 'power3.inOut',
+            onStart: () => {
+                const targetRect = ctaBtn.getBoundingClientRect();
+                gsap.to(fakeBtn, {
+                    left: targetRect.left + 'px',
+                    top: targetRect.top + 'px',
+                    width: targetRect.width + 'px',
+                    height: targetRect.height + 'px',
+                    borderRadius: '16px',
+                    duration: 1.0,
+                    ease: 'power3.inOut'
+                });
+                gsap.to(textSpan, {
+                    scale: 1.0,
+                    duration: 1.0,
+                    ease: 'power3.inOut'
+                });
+            },
+            onComplete: () => {
+                gsap.to(fakeBtn, { boxShadow: '0 0 80px rgba(231,247,2,1)', duration: 0.15, yoyo: true, repeat: 1 });
+            }
+        });
+
+        // ── STEP 4: GROW BACK INTO LIQUID LOADING BAR
+        tl.to(fakeBtn, {
+            duration: 0.8,
+            delay: 0.1, 
+            ease: 'power3.inOut',
+            onStart: () => {
+                const targetRect = ctaBtn.getBoundingClientRect();
+                const vw70 = window.innerWidth * 0.7;
+                const newX = (window.innerWidth - vw70) / 2;
+                const finalHeight = Math.max(targetRect.height, 96);
+
+                gsap.to(textSpan, { opacity: 0, duration: 0.2 });
+
+                gsap.to(fakeBtn, {
+                    left: newX + 'px',
+                    top: targetRect.top + 'px',
+                    width: vw70 + 'px',
+                    height: finalHeight + 'px',
+                    borderRadius: '22px',
+                    duration: 0.8,
+                    ease: 'power3.inOut',
+                    onComplete: () => {
+                        startEpicLiquidDownload(fakeBtn, ctaBtn, heroBtn, false);
+                    }
+                });
+            }
+        });
+    }
 }
 
 
 // ───────────────────────────────────────────────────────────────────
 // FULL-BUTTON LIQUID WATER LOADING SEQUENCE
 // ───────────────────────────────────────────────────────────────────
-function startEpicLiquidDownload(fakeBtn, toBtn, fromBtn) {
+function startEpicLiquidDownload(fakeBtn, toBtn, fromBtn, isMobileMode) {
     fakeBtn.innerHTML = '';
     Object.assign(fakeBtn.style, {
         overflow: 'hidden',
@@ -535,11 +590,13 @@ function startEpicLiquidDownload(fakeBtn, toBtn, fromBtn) {
         spdSpan.textContent = speeds[si];
     }, 700);
 
-    gsap.to({}, {
+    let proxy = { p: 0 };
+    gsap.to(proxy, {
+        p: 100,
         duration: 3.8, // 3.8 seconds to download
         ease: 'power2.inOut',
-        onUpdate: function () {
-            const p = Math.round(this.progress() * 100);
+        onUpdate: () => {
+            const p = Math.round(proxy.p);
             liquidMask.style.width = p + '%';
             splashFront.style.left = p + '%';
             pctSpan.textContent = p + '%';
@@ -568,8 +625,29 @@ function startEpicLiquidDownload(fakeBtn, toBtn, fromBtn) {
                     a.click();
                     document.body.removeChild(a);
 
-                    // Proceed to merge
-                    setTimeout(() => mergeToCTA(fakeBtn, toBtn, fromBtn), 500);
+                    if (isMobileMode) {
+                        fakeBtn.innerHTML = '✅ Downloaded!';
+                        Object.assign(fakeBtn.style, {
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            background: 'linear-gradient(135deg, rgba(231,247,2,0.98), rgba(200,213,2,0.88))',
+                            color: '#000', fontFamily: 'Inter, sans-serif', fontWeight: '800', fontSize: '1.2rem',
+                            border: '1px solid rgba(231,247,2,0.6)',
+                            boxShadow: '0 0 30px rgba(231,247,2,0.4)',
+                        });
+                        fromBtn.innerHTML = '✅ Downloaded!';
+                        fromBtn.style.visibility = 'visible';
+                        
+                        // Just fade out after a couple seconds on mobile
+                        gsap.to(fakeBtn, {
+                            opacity: 0,
+                            duration: 0.5,
+                            delay: 2,
+                            onComplete: () => fakeBtn.remove()
+                        });
+                    } else {
+                        // Proceed to merge
+                        setTimeout(() => mergeToCTA(fakeBtn, toBtn, fromBtn), 500);
+                    }
                 }
             });
         }

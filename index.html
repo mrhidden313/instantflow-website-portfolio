@@ -32,12 +32,12 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="styles.min.css?v=7.0">
+  <link rel="stylesheet" href="styles.css?v=8.0">
 
   <!-- Outcrowd Advanced Animation Libraries -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+
   <script defer src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
 
   <!-- Advanced SEO: Twitter Cards -->
@@ -133,19 +133,53 @@
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
 
-  <nav id="nav">
-    <a class="logo" href="/"><img src="logo.png" alt="InstantFlow" /><span>InstantFlow</span></a>
-    <ul class="nav-links">
-      <li><a href="#features">Features</a></li>
-      <li><a href="#how">How It Works</a></li>
-      <li><a href="#benefits">Key Benefits</a></li>
-      <li><a href="privacy-policy.html">Privacy</a></li>
-      <li><a href="terms.html">Terms</a></li>
-    </ul>
-    <a class="nav-cta" href="https://user.instantflow.online">Get Started →</a>
-    <button class="ham" id="ham" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
+  <nav id="nav" class="nav-container">
+    <!-- SPLIT HEADER (Visible when NOT scrolled) -->
+    <div class="nav-split">
+      <div class="nav-brand">
+        <a class="logo" href="/">
+          <img src="logo.png" alt="InstantFlow" />
+          <span>InstantFlow</span>
+        </a>
+      </div>
+
+      <div class="nav-center">
+        <ul class="nav-links">
+          <li><a href="#features" class="active">Home</a></li>
+          <li><a href="#how">Features</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="terms.html">Terms</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-right">
+        <a class="nav-cta" href="https://user.instantflow.online">Get Started →</a>
+        <button class="ham" id="ham" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- UNIFIED CAPSULE (Visible when SCROLLED) -->
+    <div class="nav-unified">
+      <div class="capsule">
+        <a class="logo-small" href="/">
+          <img src="logo.png" alt="InstantFlow" />
+          <span>InstantFlow</span>
+        </a>
+        <div class="divider"></div>
+        <ul class="nav-links-unified">
+          <li><a href="#features" class="active">Home</a></li>
+          <li><a href="#how">Features</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+        </ul>
+        <div class="divider"></div>
+        <a class="nav-cta-small" href="https://user.instantflow.online">Start</a>
+        <button class="ham" id="ham-unified" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
   </nav>
 
   <div class="mob-menu" id="mobMenu">
