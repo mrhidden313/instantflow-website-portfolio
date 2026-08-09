@@ -1,7 +1,7 @@
 {
-  "versionCode": 4,
-  "versionName": "5.8",
+  "versionCode": 6,
+  "versionName": "6.0",
   "downloadUrl": "https://instantflow.online/app-release.apk",
   "forceUpdate": false,
-  "releaseNotes": "Fix Android Keyboard resize issue, fresh release."
+  "releaseNotes": "Fix location crash on Android by migrating to native HTML5 geolocation."
 }
