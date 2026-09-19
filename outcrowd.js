@@ -214,6 +214,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ═══════════════════════════════════════════════════════════════
+    // 4.5 SCROLL REVEAL SAFETY NET (Ensures .reveal elements are never invisible)
+    // ═══════════════════════════════════════════════════════════════
+    const revealEls = document.querySelectorAll('.reveal');
+    if (revealEls.length > 0) {
+        if ('IntersectionObserver' in window) {
+            const rObs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.08 });
+            revealEls.forEach(el => rObs.observe(el));
+        } else {
+            revealEls.forEach(el => el.classList.add('visible'));
+        }
+    }
+
+    // ═══════════════════════════════════════════════════════════════
     // 5. CINEMATIC ZOOM-IN SCROLLING DOWNLOAD SEQUENCE
     // ═══════════════════════════════════════════════════════════════
     initCinematicDownload();
