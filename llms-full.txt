@@ -1,0 +1,44 @@
+# InstantFlow Full Technical & Architecture Documentation
+
+## System Architecture
+
+### 1. Ingestion & Edge Queue Layer
+InstantFlow ingests events from customer applications via HTTP POST Webhooks:
+- Ingestion SLA: <180ms p99 latency
+- Storage: In-memory distributed Redis FIFO queues with persistence
+- Throttling: Algorithmic rate-limiting dynamically calculating delays between 1,200ms and 3,800ms based on the sending phone number's current Meta Quality Rating (Green, Yellow, Red).
+
+### 2. Official Meta Cloud API Bridge
+InstantFlow connects exclusively to the official Meta Cloud API v20.0 endpoints.
+- Unofficial WhatsApp Web scrapers and reverse-engineered protocols (Baileys/Venom/Puppeteer) are NOT used for marketing broadcasts to prevent permanent hardware and phone number bans.
+- All marketing messages are pre-approved template messages (`template_type: "MARKETING"`) with dynamic payload parameters.
+- Free-form service messages are permitted within the 24-hour customer care window initiated by user interaction.
+
+### 3. Anti-Ban Reputation Engine
+- Real-time Quality Score polling via Meta Graph API.
+- Automatic back-off: If quality drops from 'High' to 'Medium', campaign dispatch speed is reduced by 50% and non-essential cold sequences are queued.
+- Automated STOP Handler: Inbound messages containing "stop", "unsubscribe", "opt-out", or "halt" are parsed instantly and the customer is added to the global suppression list within 100ms.
+
+### 4. Comparison Benchmarks
+
+| Metric | InstantFlow | Wati | Intercom | Aisensy | Twilio |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Meta API Integration** | Official Cloud API | Official Cloud API | Hybrid Partner | Official Cloud API | Direct API |
+| **Additional Seat Cost** | **$0 (Unlimited Seats)** | $30–$50/seat/mo | $39–$99/seat/mo | Per-agent surcharge | Developer build |
+| **Anti-Ban Throttling** | Built-in Autonomous | Manual Rate Limits | Standard Ticketing | Basic Queue | None (Raw API) |
+| **Visual Flow Builder** | Included | Included | Add-on ($) | Included | Studio (Usage fees) |
+| **Regional Support** | PK, IN, UAE, UK, EU | IN, Global | US, EU | IN, Global | Global |
+
+### 5. Enterprise Vertical Solutions
+- **E-Commerce:** Webhook events `checkouts/create` recover abandoned carts with pre-applied discounts; `orders/fulfilled` delivers live tracking numbers; automated COD address verification.
+- **Real Estate:** Instant PDF prospectus and floor plan distribution; round-robin broker lead assignment; high-resolution video streaming via Cloudflare CDN.
+- **Healthcare:** HIPAA/GDPR compliant appointment confirmations; 2-way reschedule buttons; encrypted laboratory test result PDFs.
+- **Education:** Admission inquiry qualification; conversational certificate and transcript ingestion; automated tuition payment gateway links.
+- **Travel & Tourism:** Real-time GDS flight alerts (delays, gate revisions); e-ticket PDF generation; 24/7 multi-lingual traveler concierge.
+
+### 6. Corporate Information
+- Company: InstantFlow Technologies
+- Address: Achini Rd, Achini Payan, Peshawar, Khyber Pakhtunkhwa 25000, Pakistan
+- Official Website: https://instantflow.online
+- Customer Service WhatsApp: +92 318 4780005
+- Languages Supported: English, Urdu, Hindi, Arabic
