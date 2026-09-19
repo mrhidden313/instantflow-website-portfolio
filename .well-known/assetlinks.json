@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.instantflow.app",
+      "sha256_cert_fingerprints": [
+        "25:13:71:E1:9E:5D:0D:3F:B2:D5:6B:A4:51:F5:9F:DB:5D:D7:44:7E:A1:A2:F8:26:8D:9B:E2:13:5E:C7:C4:BB"
+      ]
+    }
+  }
+]
