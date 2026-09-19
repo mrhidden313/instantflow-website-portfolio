@@ -46,13 +46,19 @@
   <!-- Advanced SEO: JSON-LD Structured Data -->
   <script type="application/ld+json">
   [
-    {
+        {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "InstantFlow",
       "operatingSystem": "Web, Android",
       "applicationCategory": "BusinessApplication",
       "url": "https://instantflow.online",
+      "provider": {
+        "@id": "https://instantflow.online/#organization"
+      },
+      "publisher": {
+        "@id": "https://instantflow.online/#organization"
+      },
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -68,13 +74,14 @@
     {
       "@context": "https://schema.org",
       "@type": ["Organization", "LocalBusiness"],
+      "@id": "https://instantflow.online/#organization",
       "name": "InstantFlow",
       "legalName": "InstantFlow Technologies",
       "url": "https://instantflow.online",
       "logo": "https://instantflow.online/logo.png",
       "image": "https://instantflow.online/screenshot/dashbaord.png",
       "description": "Enterprise-grade WhatsApp Business API CRM and Anti-Ban Marketing Automation platform.",
-      "priceRange": "$$",
+      "priceRange": "$",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Achini Rd, Achini Payan",
@@ -89,12 +96,42 @@
         "longitude": 71.4646
       },
       "telephone": "+923184780005",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+923184780005",
-        "contactType": "customer service",
-        "availableLanguage": ["English", "Urdu", "Hindi", "Arabic"]
-      },
+      "sameAs": [
+        "https://github.com/mrhidden313/instantflow-website-portfolio",
+        "https://linkedin.com/company/instantflow",
+        "https://twitter.com/instantflow",
+        "https://facebook.com/instantflow"
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+923184780005",
+          "contactType": "headquarters sales and support",
+          "areaServed": "PK",
+          "availableLanguage": ["Urdu", "English"]
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": "+923184780005",
+          "contactType": "middle east and gulf sales",
+          "areaServed": ["AE", "SA", "QA", "OM", "KW", "BH"],
+          "availableLanguage": ["Arabic", "English"]
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": "+923184780005",
+          "contactType": "uk and europe enterprise support",
+          "areaServed": ["GB", "DE", "FR", "NL", "IE", "EU"],
+          "availableLanguage": ["English"]
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": "+923184780005",
+          "contactType": "south asia regional support",
+          "areaServed": ["IN", "BD"],
+          "availableLanguage": ["Hindi", "English"]
+        }
+      ],
       "areaServed": ["Pakistan", "India", "United Arab Emirates", "Saudi Arabia", "United Kingdom", "European Union"]
     }
   ]
@@ -934,6 +971,7 @@
       <div class="fc2" style="display: flex; flex-direction: column; align-items: flex-end; gap: 15px;">
         <div style="text-align: right;">© 2026 InstantFlow. All rights reserved.<br />Achini Rd, Achini Payan, Peshawar,
           Pakistan</div>
+        <div class="regional-trust-badge" style="color: #8696a0; font-size: 0.76rem; margin-top: 5px; line-height: 1.4;">🌍 Serving enterprises across Pakistan 🇵🇰, UAE 🇦🇪, Saudi Arabia 🇸🇦, UK 🇬🇧, India 🇮🇳, and Europe 🇪🇺</div>
 
         <!-- Social Sharing -->
         <div class="social-share" style="display: flex; gap: 10px; align-items: center; margin-bottom: 5px;">
