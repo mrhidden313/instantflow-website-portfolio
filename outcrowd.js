@@ -39,84 +39,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ═══════════════════════════════════════════════════════════════
     // ═══════════════════════════════════════════════════════════════
-    // 1.5 HERO INTRO ANIMATIONS (Letter Floating & Typewriter)
     // ═══════════════════════════════════════════════════════════════
-    function splitTextToSpans(sourceNode, targetNode, charClass) {
-        const nodes = Array.from(sourceNode.childNodes);
-        nodes.forEach(node => {
-            if (node.nodeType === 3) {
-                const text = node.textContent;
-                // Split by spaces, preserving spaces
-                const words = text.split(/(\s+)/);
-                words.forEach(word => {
-                    if (word.trim() === '') {
-                        targetNode.appendChild(document.createTextNode(word));
-                    } else {
-                        const wordSpan = document.createElement('span');
-                        wordSpan.style.display = 'inline-block';
-                        wordSpan.style.whiteSpace = 'nowrap';
-                        
-                        const chars = word.split('');
-                        chars.forEach(char => {
-                            const span = document.createElement('span');
-                            span.className = charClass;
-                            span.style.display = 'inline-block';
-                            span.textContent = char;
-                            wordSpan.appendChild(span);
-                        });
-                        targetNode.appendChild(wordSpan);
-                    }
-                });
-            } else if (node.nodeType === 1) {
-                if (node.tagName.toLowerCase() === 'br') {
-                    targetNode.appendChild(document.createElement('br'));
-                } else {
-                    const wrapper = document.createElement(node.tagName);
-                    wrapper.className = node.className;
-                    targetNode.appendChild(wrapper);
-                    splitTextToSpans(node, wrapper, charClass); 
-                }
-            }
-        });
-    }
-
-    const h1El = document.querySelector('h1');
-    if (h1El) {
-        const clone = h1El.cloneNode(true);
-        h1El.innerHTML = '';
-        splitTextToSpans(clone, h1El, 'h1-char');
-    }
-
-    const pEl = document.querySelector('.hero p');
-    if (pEl) {
-        const clone = pEl.cloneNode(true);
-        pEl.innerHTML = '';
-        splitTextToSpans(clone, pEl, 'p-char');
-    }
-
+    // 1.5 HERO INTRO ANIMATIONS (Semantic & Search Engine Friendly)
+    // ═══════════════════════════════════════════════════════════════
     const heroTl = gsap.timeline({ delay: 0.1 });
 
-    heroTl.fromTo('.hero-badge', 
+    heroTl.fromTo('.hero-badge',
         { opacity: 0, scale: 0.8, filter: 'blur(12px)', y: 30 },
         { opacity: 1, scale: 1, filter: 'blur(0px)', y: 0, duration: 0.9, ease: 'expo.out', clearProps: isMobileDevice ? 'filter' : '' }
     );
 
-    // Bouncy Letter-by-Letter floating animation
-    heroTl.fromTo('.h1-char', 
-        { opacity: 0, y: isMobileDevice ? 20 : 60, rotateX: -90, scale: 0.5 },
-        { opacity: 1, y: 0, rotateX: 0, scale: 1, duration: isMobileDevice ? 0.8 : 1.2, stagger: 0.035, ease: 'back.out(1.8)', transformOrigin: '50% 100%' },
-        "-=0.6"
+    // Fade and slide up H1 without destroying DOM structure
+    heroTl.fromTo('h1',
+        { opacity: 0, y: isMobileDevice ? 20 : 40, filter: 'blur(8px)' },
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.9, ease: 'expo.out', clearProps: 'filter' },
+        "-=0.5"
     );
 
-    // Typewriter effect
-    heroTl.fromTo('.p-char', 
-        { opacity: 0 },
-        { opacity: 1, duration: 0.01, stagger: 0.015, ease: 'none' },
+    // Fade and slide up Hero Subtitle
+    heroTl.fromTo('.hero p',
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' },
         "-=0.4"
     );
 
     // FadeUp Buttons
-    heroTl.fromTo('.hero-btns', 
+    heroTl.fromTo('.hero-btns',
         { opacity: 0, y: 40, scale: 0.97 },
         { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'expo.out' },
         "-=0.3"
@@ -217,34 +165,34 @@ document.addEventListener("DOMContentLoaded", () => {
     // ═══════════════════════════════════════════════════════════════
     if (!isMobileDevice) {
         document.addEventListener('mousemove', (e) => {
-        document.querySelectorAll('.fc, .bc, .stat, .step, .pc').forEach(card => {
-            const r = card.getBoundingClientRect();
-            const cx = r.left + r.width / 2;
-            const cy = r.top + r.height / 2;
-            const dx = (e.clientX - cx) / (r.width / 2);
-            const dy = (e.clientY - cy) / (r.height / 2);
-            const dist = Math.sqrt(dx * dx + dy * dy);
+            document.querySelectorAll('.fc, .bc, .stat, .step, .pc').forEach(card => {
+                const r = card.getBoundingClientRect();
+                const cx = r.left + r.width / 2;
+                const cy = r.top + r.height / 2;
+                const dx = (e.clientX - cx) / (r.width / 2);
+                const dy = (e.clientY - cy) / (r.height / 2);
+                const dist = Math.sqrt(dx * dx + dy * dy);
 
-            if (dist < 1.4) {
-                gsap.to(card, {
-                    rotateX: -dy * 7,
-                    rotateY: dx * 7,
-                    scale: 1.025,
-                    duration: 0.35,
-                    ease: 'power2.out',
-                    transformPerspective: 900,
-                    transformOrigin: 'center center',
-                });
-            } else {
-                gsap.to(card, {
-                    rotateX: 0,
-                    rotateY: 0,
-                    scale: 1,
-                    duration: 0.6,
-                    ease: 'power2.out',
-                });
-            }
-        });
+                if (dist < 1.4) {
+                    gsap.to(card, {
+                        rotateX: -dy * 7,
+                        rotateY: dx * 7,
+                        scale: 1.025,
+                        duration: 0.35,
+                        ease: 'power2.out',
+                        transformPerspective: 900,
+                        transformOrigin: 'center center',
+                    });
+                } else {
+                    gsap.to(card, {
+                        rotateX: 0,
+                        rotateY: 0,
+                        scale: 1,
+                        duration: 0.6,
+                        ease: 'power2.out',
+                    });
+                }
+            });
         });
     }
 
@@ -253,16 +201,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // ═══════════════════════════════════════════════════════════════
     if (!isMobileDevice) {
         document.querySelectorAll('.btn-y, .btn-g, .nav-cta').forEach(btn => {
-        btn.addEventListener('mousemove', (e) => {
-            const r = btn.getBoundingClientRect();
-            const x = e.clientX - r.left - r.width / 2;
-            const y = e.clientY - r.top - r.height / 2;
-            gsap.to(btn, { x: x * 0.25, y: y * 0.25, duration: 0.3, ease: 'power2.out' });
+            btn.addEventListener('mousemove', (e) => {
+                const r = btn.getBoundingClientRect();
+                const x = e.clientX - r.left - r.width / 2;
+                const y = e.clientY - r.top - r.height / 2;
+                gsap.to(btn, { x: x * 0.25, y: y * 0.25, duration: 0.3, ease: 'power2.out' });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.4)' });
+            });
         });
-        btn.addEventListener('mouseleave', () => {
-            gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.4)' });
-        });
-    });
     }
 
     // ═══════════════════════════════════════════════════════════════
@@ -340,7 +288,7 @@ function startCinematicSequence(heroBtn, ctaBtn) {
     const isMobile = window.innerWidth <= 768;
     const clientWidth = document.documentElement.clientWidth || window.innerWidth;
     const clientHeight = document.documentElement.clientHeight || window.innerHeight;
-    
+
     if (isMobile) {
         const largeWidth = clientWidth * 0.9;
         const largeHeight = 80;
@@ -401,7 +349,7 @@ function startCinematicSequence(heroBtn, ctaBtn) {
 
         // ── STEP 2: HOLD LARGE AND AUTO-SCROLL DOWN
         tl.to(fakeBtn, {
-            duration: 3.5, 
+            duration: 3.5,
             onStart: () => {
                 window._lenis?.scrollTo(ctaBtn, { offset: -150, duration: 3.5 });
             }
@@ -436,7 +384,7 @@ function startCinematicSequence(heroBtn, ctaBtn) {
         // ── STEP 4: GROW BACK INTO LIQUID LOADING BAR
         tl.to(fakeBtn, {
             duration: 0.8,
-            delay: 0.1, 
+            delay: 0.1,
             ease: 'power3.inOut',
             onStart: () => {
                 const targetRect = ctaBtn.getBoundingClientRect();
@@ -636,7 +584,7 @@ function startEpicLiquidDownload(fakeBtn, toBtn, fromBtn, isMobileMode) {
                         });
                         fromBtn.innerHTML = '✅ Downloaded!';
                         fromBtn.style.visibility = 'visible';
-                        
+
                         // Just fade out after a couple seconds on mobile
                         gsap.to(fakeBtn, {
                             opacity: 0,

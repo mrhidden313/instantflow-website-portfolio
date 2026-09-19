@@ -3,28 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>WhatsApp Automation for E-Commerce | InstantFlow</title>
+  <title>WhatsApp Marketing for E-Commerce & Shopify | InstantFlow</title>
   <meta name="description"
-    content="Recover abandoned carts, send automated order updates, and scale your Shopify store with InstantFlow's WhatsApp E-Commerce automation." />
+    content="Recover abandoned carts, trigger automated shipping alerts, and scale online store sales with InstantFlow's WhatsApp Business API CRM for E-Commerce." />
   <meta name="keywords"
-    content="WhatsApp for E-commerce, Shopify WhatsApp integration, Abandoned cart WhatsApp, WhatsApp CRM for stores" />
+    content="WhatsApp for E-commerce, Shopify WhatsApp integration, Abandoned cart WhatsApp, WhatsApp CRM for stores, WooCommerce WhatsApp automation" />
   <meta name="author" content="InstantFlow" />
   <meta property="og:title" content="WhatsApp Automation for E-Commerce | InstantFlow" />
   <meta property="og:description"
-    content="Boost your E-Commerce sales with abandoned cart recovery and automated order tracking via WhatsApp." />
+    content="Recover abandoned carts with 80% open rates, automate order tracking, and deliver 24/7 shopping assistance." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://instantflow.online/solutions/whatsapp-for-ecommerce.html" />
+  <meta property="og:image" content="https://instantflow.online/screenshot/dashbaord.png" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://instantflow.online/solutions/whatsapp-for-ecommerce.html" />
   <link rel="icon" href="../logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="../styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css?v=8.1">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
-  <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script defer src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="WhatsApp Automation for E-Commerce" />
@@ -37,54 +36,178 @@
     "name": "InstantFlow for E-Commerce",
     "operatingSystem": "Web, Android",
     "applicationCategory": "BusinessApplication",
-    "url": "https://instantflow.online",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "description": "WhatsApp Automation platform designed to recover abandoned carts and send e-commerce updates.",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "ratingCount": "150"
-    }
+    "url": "https://instantflow.online/solutions/whatsapp-for-ecommerce.html",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "WhatsApp Automation platform designed to recover abandoned carts and send automated e-commerce updates.",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "150" }
   }
   </script>
 </head>
 
 <body>
-  <div id="antigravity-container"
-    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none;"></div>
-
+  <div id="antigravity-container" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none;"></div>
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
 
-  <nav id="nav">
-    <a class="logo" href="/"><img src="../logo.png" alt="InstantFlow" /><span>InstantFlow</span></a>
-    <ul class="nav-links">
-      <li><a href="/#features">Features</a></li>
-      <li><a href="/#how">How It Works</a></li>
-      <li><a href="/#benefits">Key Benefits</a></li>
-    </ul>
-    <a class="nav-cta" href="https://user.instantflow.online">Get Started →</a>
+  <nav id="nav" class="nav-container">
+    <div class="nav-split">
+      <div class="nav-brand">
+        <a class="logo" href="/"><img src="../logo.png" alt="InstantFlow" /><span>InstantFlow</span></a>
+      </div>
+      <div class="nav-center">
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/#preview">Preview</a></li>
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#benefits">Benefits</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="nav-right">
+        <a class="nav-cta" href="https://user.instantflow.online">Get Started →</a>
+        <button class="ham" id="ham" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
   </nav>
 
+  <div class="mob-menu" id="mobMenu">
+    <button class="mob-close" id="mobClose" aria-label="Close menu">&times;</button>
+    <a href="/" class="mob-link">Home</a>
+    <a href="/#preview" class="mob-link">Live Platform Preview</a>
+    <a href="/#features" class="mob-link">Features</a>
+    <a href="/#benefits" class="mob-link">Key Benefits</a>
+    <a href="/#contact" class="mob-link">Request Demo</a>
+    <a href="/privacy-policy.html" class="mob-link">Privacy</a>
+    <a href="/terms.html" class="mob-link">Terms</a>
+    <a class="mob-cta mob-link" href="https://user.instantflow.online">Get Started Free</a>
+  </div>
+
   <section class="hero" style="position: relative; overflow: hidden; padding-top: 150px; text-align: center;">
-    <div class="hero-badge"><span></span>Solutions for E-Commerce</div>
+    <div class="hero-badge"><span></span>Solutions for E-Commerce & Retail</div>
     <h1>Scale Your Store with<br /><em>WhatsApp E-Commerce Automation</em></h1>
-    <p style="max-width: 700px; margin: 20px auto; font-size: 1.2rem; color: #8696a0;">
-      Recover abandoned carts with 80% open rates, automatically send shipping updates, and manage customer support all in one unified WhatsApp dashboard.
+    <p style="max-width: 760px; margin: 20px auto; font-size: 1.15rem; color: #8696a0; line-height: 1.7;">
+      Recover lost checkouts, send automated dispatch notifications, and deliver 24/7 shopping assistance directly on WhatsApp with 98% open rates.
     </p>
-    <div class="hero-btns" style="justify-content: center; margin-top: 40px;">
-      <a class="btn-y" href="https://user.instantflow.online">Scale Your Store Now →</a>
+    <div class="hero-btns" style="justify-content: center; margin-top: 30px;">
+      <a class="btn-y" href="https://user.instantflow.online">Automate Your Store Now →</a>
+      <a class="btn-g" href="https://wa.me/923184780005?text=Hi%2C%20I%20want%20to%20connect%20InstantFlow%20with%20my%20E-Commerce%20store." target="_blank" rel="noopener">Consult Specialist 💬</a>
     </div>
   </section>
 
-  <script type="module">
-    import { initAntigravity } from '../antigravity.js?v=5';
-    initAntigravity('antigravity-container', { count: 400, autoAnimate: true, rotationSpeed: 0.2, magnetRadius: 15, ringRadius: 10, waveSpeed: 0.2, lerpSpeed: 0.05 });
+  <!-- Workflows Section -->
+  <section style="padding: 60px 6% 80px; max-width: 1200px; margin: 0 auto;">
+    <div class="cen">
+      <div class="stag">Automated Store Operations</div>
+      <h2 class="stit">Convert Browsers Into Loyal Buyers</h2>
+      <p class="ssub">Deploy high-converting WhatsApp workflows that drive repeat revenue on autopilot.</p>
+    </div>
+
+    <div class="feat-grid" style="margin-top: 3rem;">
+      <div class="fc">
+        <div class="fi">🛒</div>
+        <h3>Abandoned Cart Recovery</h3>
+        <p>Trigger automated personalized WhatsApp reminders with discount codes 15 minutes after checkout abandonment. Recover up to 35% of lost orders.</p>
+      </div>
+      <div class="fc">
+        <div class="fi">📦</div>
+        <h3>Order & Dispatch Alerts</h3>
+        <p>Keep shoppers updated at every stage: Order Confirmation, Tracking IDs, Dispatch Alerts, and Out-for-Delivery notifications automatically.</p>
+      </div>
+      <div class="fc">
+        <div class="fi">⚡</div>
+        <h3>Cash-on-Delivery Confirmation</h3>
+        <p>Reduce Return-to-Origin (RTO) rates significantly by verifying customer phone numbers and delivery addresses via automated interactive buttons.</p>
+      </div>
+      <div class="fc">
+        <div class="fi">🤖</div>
+        <h3>AI Product Recommendations</h3>
+        <p>Deploy a conversational shopping assistant that recommends products based on customer queries, checks stock availability, and collects feedback.</p>
+      </div>
+    </div>
+
+    <!-- AI Verdict Box -->
+    <div class="ai-verdict-box" style="margin-top: 4rem;">
+      <div class="ai-verdict-tag">E-Commerce Benchmark</div>
+      <h3 class="ai-verdict-title">Why WhatsApp Outperforms Email & SMS for Stores</h3>
+      <p class="ai-verdict-desc">
+        Traditional e-commerce email campaigns average open rates below 20%, with SMS click-through rates rapidly declining. WhatsApp Business API delivers an unprecedented 98% open rate and a 45–60% response rate within the first 5 minutes of delivery. By implementing InstantFlow's anti-ban broadcasting infrastructure and native Shopify/WooCommerce webhooks, e-commerce brands achieve a 4x to 8x higher return on campaign spend.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <div class="cta-b" style="margin: 0 6% 5rem;">
+    <h2>Ready to Scale Your<br /><em>Store's WhatsApp Revenue?</em></h2>
+    <p>Connect your catalog and start recovering abandoned carts in under 10 minutes.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+      <a class="btn-y" href="https://user.instantflow.online">Start Free Trial →</a>
+      <a class="btn-g" href="https://wa.me/923184780005" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="fi2">
+      <div>
+        <div class="fb">InstantFlow</div>
+        <div style="color:#666;font-size:.78rem;margin-top:.4rem;line-height:1.7">
+          📞 <a href="https://wa.me/923184780005" target="_blank" rel="noopener noreferrer" style="color:#666;text-decoration:none;">+92 318 4780005</a> (WhatsApp)<br />
+          📍 Achini Rd, Achini Payan, Peshawar, Pakistan
+        </div>
+      </div>
+      <div class="fl">
+        <a href="/">Home</a>
+        <a href="/#preview">Preview</a>
+        <a href="/#features">Features</a>
+        <a href="/#benefits">Key Benefits</a>
+        <a href="/compare/instantflow-vs-wati.html">vs Wati</a>
+        <a href="/compare/instantflow-vs-intercom.html">vs Intercom</a>
+        <a href="/compare/instantflow-vs-zendesk.html">vs Zendesk</a>
+        <a href="/solutions/whatsapp-for-ecommerce.html">E-Commerce</a>
+        <a href="/solutions/whatsapp-for-real-estate.html">Real Estate</a>
+        <a href="/solutions/whatsapp-for-healthcare.html">Healthcare</a>
+        <a href="/solutions/whatsapp-for-education.html">Education</a>
+        <a href="/solutions/whatsapp-for-travel.html">Travel & Tourism</a>
+        <a href="/solutions/how-to-avoid-whatsapp-ban.html">Avoid Ban Guide</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="https://wa.me/923184780005" target="_blank" rel="noopener noreferrer">Contact</a>
+      </div>
+      <div class="fc2" style="display: flex; flex-direction: column; align-items: flex-end; gap: 15px;">
+        <div style="text-align: right;">© 2026 InstantFlow. All rights reserved.<br />Achini Rd, Achini Payan, Peshawar, Pakistan</div>
+        <div class="social-links" style="display: flex; gap: 15px;">
+          <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" style="color: #8696a0; text-decoration: none; font-size: 0.9rem;">Facebook</a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" style="color: #8696a0; text-decoration: none; font-size: 0.9rem;">Instagram</a>
+          <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" style="color: #8696a0; text-decoration: none; font-size: 0.9rem;">LinkedIn</a>
+          <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" style="color: #8696a0; text-decoration: none; font-size: 0.9rem;">X</a>
+          <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" style="color: #8696a0; text-decoration: none; font-size: 0.9rem;">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const ham = document.getElementById('ham');
+    const mobMenu = document.getElementById('mobMenu');
+    const mobClose = document.getElementById('mobClose');
+    if (ham && mobMenu) {
+      function closeMenu() {
+        ham.classList.remove('open');
+        mobMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      ham.addEventListener('click', () => {
+        ham.classList.toggle('open');
+        mobMenu.classList.toggle('open');
+        document.body.style.overflow = mobMenu.classList.contains('open') ? 'hidden' : '';
+      });
+      if (mobClose) mobClose.addEventListener('click', closeMenu);
+      document.querySelectorAll('.mob-link').forEach(a => a.addEventListener('click', closeMenu));
+    }
   </script>
-  <script src="../outcrowd.js?v=3"></script>
+  <script type="module">
+    import { initAntigravity } from '../antigravity.js?v=6.0';
+    initAntigravity('antigravity-container', { count: 350, autoAnimate: true, rotationSpeed: 0.2, magnetRadius: 15, ringRadius: 10, waveSpeed: 0.2, lerpSpeed: 0.05 });
+  </script>
+  <script defer src="../outcrowd.js?v=9.0"></script>
 </body>
 </html>

@@ -26,20 +26,23 @@
     document.querySelectorAll('[data-count]').forEach(el => cobs.observe(el));
 
     // Hamburger menu
-    const ham = document.getElementById('ham');
+    const hams = document.querySelectorAll('.ham');
     const mobMenu = document.getElementById('mobMenu');
     const mobClose = document.getElementById('mobClose');
 
     function closeMenu() {
-      ham.classList.remove('open');
-      mobMenu.classList.remove('open');
+      hams.forEach(h => h.classList.remove('open'));
+      if (mobMenu) mobMenu.classList.remove('open');
       document.body.style.overflow = '';
     }
 
-    ham.addEventListener('click', () => {
-      ham.classList.toggle('open');
-      mobMenu.classList.toggle('open');
-      document.body.style.overflow = mobMenu.classList.contains('open') ? 'hidden' : '';
+    hams.forEach(h => {
+      h.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = mobMenu.classList.toggle('open');
+        hams.forEach(el => el.classList.toggle('open', isOpen));
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
     });
 
     if (mobClose) mobClose.addEventListener('click', closeMenu);
@@ -77,14 +80,11 @@
       const shuffled = [...allBuyers].sort(() => 0.5 - Math.random());
 
       function createFeedItemHtml(buyer) {
-        const logoNum = Math.floor(Math.random() * 67) + 1;
-        const avatarUrl = `assets/logos/${logoNum}.png`;
         const initialColor = colors[Math.floor(Math.random() * colors.length)];
         return `
           <div class="feed-item">
-            <div class="f-av" style="background: ${initialColor}; position: relative; overflow: hidden; flex-shrink: 0;">
-              <span style="position: relative; z-index: 1;">${buyer.name.charAt(0)}</span>
-              <img src="${avatarUrl}" alt="${buyer.name}" style="position: absolute; top: 0; left: 0; z-index: 2; width: 100%; height: 100%; object-fit: cover; background: #fff;" onerror="this.style.display='none';" />
+            <div class="f-av" style="background: ${initialColor}; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+              <span>${buyer.name.charAt(0)}</span>
             </div>
             <div class="f-info">
               <div class="f-name">${buyer.name}</div>
@@ -131,3 +131,57 @@
         }, 500);
       }, 2000);
     }
+
+    // Product Showcase Tabs Switcher
+    const tabButtons = document.querySelectorAll('.showcase-tab-btn');
+    const tabPanes = document.querySelectorAll('.showcase-content-pane');
+    const windowUrl = document.getElementById('window-url');
+
+    const tabUrls = {
+      'tab-dashboard': 'https://user.instantflow.online/dashboard/analytics',
+      'tab-inbox': 'https://user.instantflow.online/inbox/live-chats',
+      'tab-automation': 'https://user.instantflow.online/chatbot/workflows',
+      'tab-settings': 'https://user.instantflow.online/settings/meta-cloud-api'
+    };
+
+    if (tabButtons.length > 0) {
+      tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetTab = btn.getAttribute('data-tab');
+
+          tabButtons.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          tabPanes.forEach(pane => pane.classList.remove('active'));
+
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+
+          const activePane = document.getElementById(targetTab);
+          if (activePane) activePane.classList.add('active');
+
+          if (windowUrl && tabUrls[targetTab]) {
+            windowUrl.textContent = tabUrls[targetTab];
+          }
+        });
+      });
+    }
+
+    // Enterprise Consultation Lead Form Submission
+    function handleLeadSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById('leadName')?.value.trim() || '';
+      const company = document.getElementById('leadCompany')?.value.trim() || '';
+      const phone = document.getElementById('leadPhone')?.value.trim() || '';
+      const volume = document.getElementById('leadVolume')?.value || '';
+      const notes = document.getElementById('leadNotes')?.value.trim() || 'N/A';
+
+      const message = `Hello InstantFlow Team, I would like to request an Enterprise Consultation and Demo.\n\n*Name:* ${name}\n*Company:* ${company}\n*WhatsApp:* ${phone}\n*Monthly Volume:* ${volume}\n*Requirements:* ${notes}`;
+
+      const encodedMessage = encodeURIComponent(message);
+      const targetUrl = `https://wa.me/923184780005?text=${encodedMessage}`;
+
+      window.open(targetUrl, '_blank', 'noopener,noreferrer');
+    }
+    window.handleLeadSubmit = handleLeadSubmit;

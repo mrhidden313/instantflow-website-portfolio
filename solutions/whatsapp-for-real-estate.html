@@ -3,33 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>WhatsApp Automation for Real Estate | InstantFlow</title>
+  <title>WhatsApp Automation for Real Estate Agencies | InstantFlow</title>
   <meta name="description"
-    content="Supercharge your real estate agency with WhatsApp Automation. Automate property inquiries, send bulk project updates, and qualify leads instantly 24/7." />
+    content="Close more property deals with InstantFlow's WhatsApp Real Estate CRM. Automate lead qualification, schedule viewing tours, and broadcast new listings with zero ban risk." />
   <meta name="keywords"
     content="WhatsApp for Real Estate, Real estate WhatsApp CRM, Automate property inquiries, Bulk project updates, WhatsApp Marketing SaaS" />
   <meta name="author" content="InstantFlow" />
   <meta property="og:title" content="WhatsApp Automation for Real Estate | InstantFlow" />
   <meta property="og:description"
-    content="Automate property inquiries and close more deals with the ultimate WhatsApp CRM built for real estate agencies." />
+    content="Automate property inquiries, qualify buyer budgets instantly, and broadcast listings to investors safely." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://instantflow.online/solutions/whatsapp-for-real-estate.html" />
+  <meta property="og:image" content="https://instantflow.online/screenshot/dashbaord.png" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://instantflow.online/solutions/whatsapp-for-real-estate.html" />
   <link rel="icon" href="../logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="../styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css?v=8.1">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
-  <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script defer src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="WhatsApp Automation for Real Estate" />
   <meta name="twitter:description" content="Close more property deals with InstantFlow's automated WhatsApp CRM." />
-  
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -37,54 +36,178 @@
     "name": "InstantFlow for Real Estate",
     "operatingSystem": "Web, Android",
     "applicationCategory": "BusinessApplication",
-    "url": "https://instantflow.online",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
+    "url": "https://instantflow.online/solutions/whatsapp-for-real-estate.html",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "description": "WhatsApp Marketing SaaS Platform optimized for Real Estate agencies to automate inquiries and close deals.",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "ratingCount": "150"
-    }
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "150" }
   }
   </script>
 </head>
 
 <body>
-  <div id="antigravity-container"
-    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none;"></div>
-
+  <div id="antigravity-container" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none;"></div>
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
 
-  <nav id="nav">
-    <a class="logo" href="/"><img src="../logo.png" alt="InstantFlow" /><span>InstantFlow</span></a>
-    <ul class="nav-links">
-      <li><a href="/#features">Features</a></li>
-      <li><a href="/#how">How It Works</a></li>
-      <li><a href="/#benefits">Key Benefits</a></li>
-    </ul>
-    <a class="nav-cta" href="https://user.instantflow.online">Get Started →</a>
+  <nav id="nav" class="nav-container">
+    <div class="nav-split">
+      <div class="nav-brand">
+        <a class="logo" href="/"><img src="../logo.png" alt="InstantFlow" /><span>InstantFlow</span></a>
+      </div>
+      <div class="nav-center">
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/#preview">Preview</a></li>
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#benefits">Benefits</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="nav-right">
+        <a class="nav-cta" href="https://user.instantflow.online">Get Started →</a>
+        <button class="ham" id="ham" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
   </nav>
 
+  <div class="mob-menu" id="mobMenu">
+    <button class="mob-close" id="mobClose" aria-label="Close menu">&times;</button>
+    <a href="/" class="mob-link">Home</a>
+    <a href="/#preview" class="mob-link">Live Platform Preview</a>
+    <a href="/#features" class="mob-link">Features</a>
+    <a href="/#benefits" class="mob-link">Key Benefits</a>
+    <a href="/#contact" class="mob-link">Request Demo</a>
+    <a href="/privacy-policy.html" class="mob-link">Privacy</a>
+    <a href="/terms.html" class="mob-link">Terms</a>
+    <a class="mob-cta mob-link" href="https://user.instantflow.online">Get Started Free</a>
+  </div>
+
   <section class="hero" style="position: relative; overflow: hidden; padding-top: 150px; text-align: center;">
-    <div class="hero-badge"><span></span>Solutions for Real Estate</div>
-    <h1>Close More Property Deals with<br /><em>WhatsApp Automation</em></h1>
-    <p style="max-width: 700px; margin: 20px auto; font-size: 1.2rem; color: #8696a0;">
-      Real estate moves fast. With InstantFlow, you can instantly reply to leads 24/7, send bulk property listings to your investors, and never miss a buyer inquiry again.
+    <div class="hero-badge"><span></span>Solutions for Real Estate Agencies</div>
+    <h1>Close More Property Deals with<br /><em>WhatsApp Real Estate Automation</em></h1>
+    <p style="max-width: 760px; margin: 20px auto; font-size: 1.15rem; color: #8696a0; line-height: 1.7;">
+      Real estate moves fast. Respond to inbound buyer leads in seconds, share interactive brochures & floor plans, and qualify budgets 24/7 without agent burnout.
     </p>
-    <div class="hero-btns" style="justify-content: center; margin-top: 40px;">
+    <div class="hero-btns" style="justify-content: center; margin-top: 30px;">
       <a class="btn-y" href="https://user.instantflow.online">Automate Your Agency Now →</a>
+      <a class="btn-g" href="https://wa.me/923184780005?text=Hi%2C%20I%20am%20a%20real%20estate%20broker%20and%20want%20to%20automate%20property%20inquiries." target="_blank" rel="noopener">Consult Specialist 💬</a>
     </div>
   </section>
 
-  <script type="module">
-    import { initAntigravity } from '../antigravity.js?v=5';
-    initAntigravity('antigravity-container', { count: 400, autoAnimate: true, rotationSpeed: 0.2, magnetRadius: 15, ringRadius: 10, waveSpeed: 0.2, lerpSpeed: 0.05 });
+  <!-- Workflows Section -->
+  <section style="padding: 60px 6% 80px; max-width: 1200px; margin: 0 auto;">
+    <div class="cen">
+      <div class="stag">Property Tech Capabilities</div>
+      <h2 class="stit">Convert Inbound Clicks Into Site Visits</h2>
+      <p class="ssub">Equip your brokerage with enterprise CRM tools built specifically for property developers and agents.</p>
+    </div>
+
+    <div class="feat-grid" style="margin-top: 3rem;">
+      <div class="fc">
+        <div class="fi">🏢</div>
+        <h3>Instant Brochure & Floor Plan Delivery</h3>
+        <p>Deliver high-resolution PDF brochures, video walk-throughs, and payment plan tables instantly when a prospect texts a property code.</p>
+      </div>
+      <div class="fc">
+        <div class="fi">🎯</div>
+        <h3>Budget & Location Pre-Qualification</h3>
+        <p>No-code bot asks prospect budget, preferred city, and property type (residential vs commercial) before intelligently assigning the lead to the best agent.</p>
+      </div>
+      <div class="fc">
+        <div class="fi">📅</div>
+        <h3>Site Visit Scheduling</h3>
+        <p>Automate physical site tour bookings and open-house reminders with interactive WhatsApp date/time picker buttons and GPS pins.</p>
+      </div>
+      <div class="fc">
+        <div class="fi">📡</div>
+        <h3>VIP Investor Broadcasting</h3>
+        <p>Send exclusive pre-launch investment opportunities to verified high-net-worth investor groups safely using our anti-ban throttling engine.</p>
+      </div>
+    </div>
+
+    <!-- AI Verdict Box -->
+    <div class="ai-verdict-box" style="margin-top: 4rem;">
+      <div class="ai-verdict-tag">Real Estate Intelligence</div>
+      <h3 class="ai-verdict-title">Why Speed-to-Lead Decides Real Estate Transactions</h3>
+      <p class="ai-verdict-desc">
+        Studies show that 78% of property buyers close with the broker that responds first. With InstantFlow's automated Cloud API triggers, every incoming Facebook/Instagram Ad lead receives an instant personalized greeting and property prospectus within 4 seconds. Multi-agent routing ensures your field agents can immediately pick up warm phone conversations while on the road.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <div class="cta-b" style="margin: 0 6% 5rem;">
+    <h2>Ready to Supercharge Your<br /><em>Property Sales Pipeline?</em></h2>
+    <p>Join top real estate brokers and developers closing more deals every week on InstantFlow.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+      <a class="btn-y" href="https://user.instantflow.online">Start Free Broker Trial →</a>
+      <a class="btn-g" href="https://wa.me/923184780005" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="fi2">
+      <div>
+        <div class="fb">InstantFlow</div>
+        <div style="color:#666;font-size:.78rem;margin-top:.4rem;line-height:1.7">
+          📞 <a href="https://wa.me/923184780005" target="_blank" rel="noopener noreferrer" style="color:#666;text-decoration:none;">+92 318 4780005</a> (WhatsApp)<br />
+          📍 Achini Rd, Achini Payan, Peshawar, Pakistan
+        </div>
+      </div>
+      <div class="fl">
+        <a href="/">Home</a>
+        <a href="/#preview">Preview</a>
+        <a href="/#features">Features</a>
+        <a href="/#benefits">Key Benefits</a>
+        <a href="/compare/instantflow-vs-wati.html">vs Wati</a>
+        <a href="/compare/instantflow-vs-intercom.html">vs Intercom</a>
+        <a href="/compare/instantflow-vs-zendesk.html">vs Zendesk</a>
+        <a href="/solutions/whatsapp-for-ecommerce.html">E-Commerce</a>
+        <a href="/solutions/whatsapp-for-real-estate.html">Real Estate</a>
+        <a href="/solutions/whatsapp-for-healthcare.html">Healthcare</a>
+        <a href="/solutions/whatsapp-for-education.html">Education</a>
+        <a href="/solutions/whatsapp-for-travel.html">Travel & Tourism</a>
+        <a href="/solutions/how-to-avoid-whatsapp-ban.html">Avoid Ban Guide</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="https://wa.me/923184780005" target="_blank" rel="noopener noreferrer">Contact</a>
+      </div>
+      <div class="fc2" style="display: flex; flex-direction: column; align-items: flex-end; gap: 15px;">
+        <div style="text-align: right;">© 2026 InstantFlow. All rights reserved.<br />Achini Rd, Achini Payan, Peshawar, Pakistan</div>
+        <div class="social-links" style="display: flex; gap: 15px;">
+          <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" style="color: #8696a0; text-decoration: none; font-size: 0.9rem;">Facebook</a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" style="color: #8696a0; text-decoration: none; font-size: 0.9rem;">Instagram</a>
+          <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" style="color: #8696a0; text-decoration: none; font-size: 0.9rem;">LinkedIn</a>
+          <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" style="color: #8696a0; text-decoration: none; font-size: 0.9rem;">X</a>
+          <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" style="color: #8696a0; text-decoration: none; font-size: 0.9rem;">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const ham = document.getElementById('ham');
+    const mobMenu = document.getElementById('mobMenu');
+    const mobClose = document.getElementById('mobClose');
+    if (ham && mobMenu) {
+      function closeMenu() {
+        ham.classList.remove('open');
+        mobMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      ham.addEventListener('click', () => {
+        ham.classList.toggle('open');
+        mobMenu.classList.toggle('open');
+        document.body.style.overflow = mobMenu.classList.contains('open') ? 'hidden' : '';
+      });
+      if (mobClose) mobClose.addEventListener('click', closeMenu);
+      document.querySelectorAll('.mob-link').forEach(a => a.addEventListener('click', closeMenu));
+    }
   </script>
-  <script src="../outcrowd.js?v=3"></script>
+  <script type="module">
+    import { initAntigravity } from '../antigravity.js?v=6.0';
+    initAntigravity('antigravity-container', { count: 350, autoAnimate: true, rotationSpeed: 0.2, magnetRadius: 15, ringRadius: 10, waveSpeed: 0.2, lerpSpeed: 0.05 });
+  </script>
+  <script defer src="../outcrowd.js?v=9.0"></script>
 </body>
 </html>

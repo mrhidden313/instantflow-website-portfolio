@@ -1,4 +1,6 @@
 User-agent: *
+Disallow: /.agents/
+Disallow: /admin/
 Allow: /
 
 Sitemap: https://instantflow.online/sitemap.xml

@@ -1,7 +1,7 @@
 {
-  "versionCode": 6,
-  "versionName": "6.0",
+  "versionCode": 11,
+  "versionName": "11.0",
   "downloadUrl": "https://instantflow.online/app-release.apk",
   "forceUpdate": false,
-  "releaseNotes": "Fix location crash on Android by migrating to native HTML5 geolocation."
+  "releaseNotes": "High-priority notification channel & heads-up banner display enabled."
 }
