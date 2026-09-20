@@ -530,8 +530,14 @@
         padding: 6.5rem 4% 3rem;
       }
       .hero-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 36px;
+        width: 100%;
+      }
+      .hero-left, .hero-right {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
       }
       .hero-left {
         align-items: center !important;
@@ -604,13 +610,15 @@
     }
 
     .main-hero-title, h1 {
-      font-size: clamp(2.5rem, 4.5vw, 4.2rem);
+      font-size: clamp(2rem, 4.5vw, 4.2rem);
       font-weight: 900;
-      line-height: 1.08;
-      letter-spacing: -2px;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
       max-width: 720px;
       margin-bottom: 1.2rem;
       color: #fff;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
 
     h1 em, .main-hero-title em {
@@ -2521,27 +2529,152 @@
       }
 
       .hero {
-        padding: 6.5rem 5% 3rem;
-        min-height: auto
+        padding: 6.8rem 16px 2.5rem;
+        min-height: auto;
+        overflow-x: hidden;
       }
 
+      .main-hero-title,
       h1 {
-        letter-spacing: -1.5px
+        font-size: clamp(1.75rem, 6.2vw, 2.25rem);
+        line-height: 1.18;
+        letter-spacing: -0.8px;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
       }
 
-      .hero p {
-        font-size: 1rem;
-        margin-bottom: 2rem
+      .hero p,
+      .hero-desc {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        max-width: 100%;
+        margin-bottom: 1.4rem;
       }
 
       .hero-btns {
-        gap: .75rem
+        width: 100%;
+        gap: .75rem;
+        flex-direction: column;
+        align-items: stretch;
       }
 
       .btn-y,
       .btn-g {
-        padding: .8rem 1.5rem;
-        font-size: .95rem
+        width: 100%;
+        max-width: 100%;
+        padding: .85rem 1.4rem;
+        font-size: .95rem;
+        text-align: center;
+      }
+
+      .hero-specialist-row {
+        width: 100%;
+        align-items: stretch;
+      }
+
+      .hero-wa-pill {
+        width: 100%;
+        justify-content: center;
+        box-sizing: border-box;
+        font-size: 0.8rem;
+        padding: 7px 12px;
+      }
+
+      .hero-subnote {
+        text-align: center;
+      }
+
+      .hero-metrics-ribbon {
+        max-width: 100%;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 1.4rem;
+        padding-top: 1.2rem;
+      }
+
+      .metric-val {
+        font-size: 1.35rem;
+      }
+
+      .metric-lbl {
+        font-size: 0.68rem;
+      }
+
+      /* Hero Right: HUD Card Mobile Responsiveness */
+      .hero-hud-card {
+        padding: 16px 14px;
+        border-radius: 16px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .hud-header {
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        gap: 6px;
+      }
+
+      .hud-badge {
+        font-size: 0.65rem;
+        padding: 2px 7px;
+      }
+
+      .hud-channel {
+        font-size: 0.68rem;
+      }
+
+      .hud-stats-row {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+        margin-bottom: 10px;
+      }
+
+      .hud-mini-stat {
+        padding: 6px 8px;
+      }
+
+      .hud-mini-label {
+        font-size: 0.55rem;
+        letter-spacing: 0.02em;
+      }
+
+      .hud-mini-val {
+        font-size: 0.72rem;
+      }
+
+      .hud-chat-preview {
+        padding: 10px;
+        margin-bottom: 10px;
+        gap: 6px;
+      }
+
+      .hud-user-name {
+        font-size: 0.72rem;
+      }
+
+      .hud-user-meta {
+        font-size: 0.6rem;
+      }
+
+      .hud-msg {
+        font-size: 0.75rem;
+        padding: 7px 10px;
+        max-width: 95%;
+      }
+
+      .hud-msg-meta {
+        font-size: 0.58rem;
+      }
+
+      .hud-actions-row {
+        gap: 6px;
+      }
+
+      .hud-pill {
+        font-size: 0.64rem;
+        padding: 3px 8px;
       }
 
       .hero-wa-btn {
@@ -2699,7 +2832,14 @@
       }
 
       .hero {
-        padding: 5.5rem 4% 2rem
+        padding: 6.8rem 14px 2rem;
+      }
+
+      .main-hero-title,
+      h1 {
+        font-size: clamp(1.6rem, 5.8vw, 1.85rem);
+        letter-spacing: -0.6px;
+        line-height: 1.2;
       }
 
       .hero-badge {
@@ -2709,7 +2849,8 @@
       }
 
       .hero p {
-        font-size: .95rem
+        font-size: .92rem;
+        line-height: 1.55;
       }
 
       .hero-wa-label {
@@ -2789,11 +2930,14 @@
     /* ── 360px – SMALL MOBILE ── */
     @media(max-width:360px) {
       .hero {
-        padding: 5rem 3.5% 1.5rem
+        padding: 6.5rem 12px 1.5rem;
       }
 
+      .main-hero-title,
       h1 {
-        letter-spacing: -.5px
+        font-size: 1.55rem;
+        letter-spacing: -.5px;
+        line-height: 1.2;
       }
 
       .stat {
