@@ -400,17 +400,66 @@
       transform: scale(0.96) translateY(1px);
     }
 
-    /* HERO */
+    /* HERO: Modern Linear/Stripe Split Architecture */
     .hero {
-      min-height: 100vh;
+      min-height: 85vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 8rem 5% 4rem;
+      padding: 7.5rem 4% 3.5rem;
       position: relative;
-      z-index: 1
+      z-index: 1;
+    }
+
+    .hero-container {
+      width: 100%;
+      max-width: 1360px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    @media (max-width: 1024px) {
+      .hero {
+        padding: 6.5rem 4% 3rem;
+      }
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero-left {
+        align-items: center !important;
+        text-align: center !important;
+      }
+      .hero-left h1 {
+        text-align: center !important;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-desc {
+        text-align: center !important;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-left .hero-btns {
+        justify-content: center !important;
+      }
+      .hero-specialist-row {
+        align-items: center !important;
+      }
+      .hero-metrics-ribbon {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
     }
 
     .hero-badge {
@@ -420,58 +469,310 @@
       background: rgba(231, 247, 2, .07);
       border: 1px solid rgba(231, 247, 2, .25);
       color: var(--y);
-      padding: .4rem 1rem;
+      padding: .4rem 1.1rem;
       border-radius: 999px;
       font-size: .78rem;
       font-weight: 600;
       letter-spacing: .5px;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
-    .hero-badge span {
+    .badge-dot, .hero-badge > span.badge-dot {
       width: 7px;
       height: 7px;
       background: var(--y);
       border-radius: 50%;
       animation: pulse 2s infinite;
-      box-shadow: 0 0 8px var(--y)
+      box-shadow: 0 0 8px var(--y);
+      display: inline-block;
+      flex-shrink: 0;
     }
 
     @keyframes pulse {
-
-      0%,
-      100% {
+      0%, 100% {
         opacity: 1;
-        transform: scale(1)
+        transform: scale(1);
       }
-
       50% {
         opacity: .5;
-        transform: scale(.8)
+        transform: scale(.8);
       }
     }
 
-    h1 {
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
+    .main-hero-title, h1 {
+      font-size: clamp(2.5rem, 4.5vw, 4.2rem);
       font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: -2.5px;
-      max-width: 900px;
-      margin-bottom: 1.5rem;
+      line-height: 1.08;
+      letter-spacing: -2px;
+      max-width: 720px;
+      margin-bottom: 1.2rem;
+      color: #fff;
     }
 
-    h1 em {
+    h1 em, .main-hero-title em {
       font-style: normal;
       color: var(--y);
-      text-shadow: 0 0 40px rgba(231, 247, 2, .5)
+      text-shadow: 0 0 40px rgba(231, 247, 2, .5);
     }
 
-    .hero p {
-      font-size: 1.1rem;
-      color: var(--muted);
-      max-width: 520px;
-      line-height: 1.75;
-      margin-bottom: 2.5rem;
+    .hero-desc, .hero p {
+      font-size: 1.08rem;
+      color: #94a3b8;
+      max-width: 620px;
+      line-height: 1.7;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-specialist-row {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-start;
+    }
+
+    .hero-wa-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(37, 211, 102, 0.08);
+      border: 1px solid rgba(37, 211, 102, 0.25);
+      border-radius: 30px;
+      padding: 8px 16px;
+      color: #25d366;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .hero-wa-pill:hover {
+      background: rgba(37, 211, 102, 0.16);
+      border-color: rgba(37, 211, 102, 0.45);
+      transform: translateY(-1px);
+    }
+    .live-dot-green {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #25d366;
+      box-shadow: 0 0 8px #25d366;
+      animation: pulse 2s infinite;
+    }
+    .hero-subnote {
+      color: #64748b;
+      font-size: 0.74rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-metrics-ribbon {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      width: 100%;
+      max-width: 640px;
+      margin-top: 2rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    @media (max-width: 580px) {
+      .hero-metrics-ribbon {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+    }
+    .metric-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .metric-val {
+      font-size: 1.65rem;
+      font-weight: 900;
+      color: var(--y);
+      text-shadow: 0 0 20px rgba(231, 247, 2, 0.35);
+      line-height: 1.1;
+    }
+    .metric-lbl {
+      font-size: 0.74rem;
+      color: #8696a0;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* Hero Right: Live SaaS HUD Command Window */
+    .hero-right {
+      position: relative;
+      width: 100%;
+    }
+    .hero-hud-card {
+      background: linear-gradient(145deg, rgba(18, 24, 32, 0.85) 0%, rgba(9, 13, 17, 0.95) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(37, 211, 102, 0.06);
+      backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-hud-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(231, 247, 2, 0.4), rgba(37, 211, 102, 0.4), transparent);
+    }
+    .hud-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .hud-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .hud-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+    .hud-dot.red { background: #ef4444; }
+    .hud-dot.yellow { background: #eab308; }
+    .hud-dot.green { background: #22c55e; }
+    .hud-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(37, 211, 102, 0.1);
+      border: 1px solid rgba(37, 211, 102, 0.25);
+      border-radius: 999px;
+      padding: 3px 9px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #25d366;
+    }
+    .hud-badge-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #25d366;
+      box-shadow: 0 0 6px #25d366;
+    }
+    .hud-channel {
+      font-size: 0.72rem;
+      color: #8696a0;
+      font-family: monospace;
+    }
+    .hud-stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .hud-mini-stat {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 8px 10px;
+    }
+    .hud-mini-label {
+      font-size: 0.65rem;
+      color: #8696a0;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .hud-mini-val {
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .hud-chat-preview {
+      background: #0b141a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .hud-chat-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 4px;
+    }
+    .hud-avatar {
+      width: 26px;
+      height: 26px;
+      background: #202c33;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #aebac1;
+    }
+    .hud-user-name {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #e9edef;
+    }
+    .hud-user-meta {
+      font-size: 0.65rem;
+      color: #8696a0;
+    }
+    .hud-msg {
+      max-width: 88%;
+      padding: 8px 11px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+    .hud-msg.inbound {
+      align-self: flex-start;
+      background: #202c33;
+      color: #e9edef;
+      border-bottom-left-radius: 2px;
+    }
+    .hud-msg.outbound {
+      align-self: flex-end;
+      background: #005c4b;
+      color: #e9edef;
+      border-bottom-right-radius: 2px;
+    }
+    .hud-msg-meta {
+      font-size: 0.62rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-align: right;
+      margin-top: 3px;
+    }
+    .hud-actions-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .hud-pill {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      color: #aebac1;
+    }
+    .hud-pill.active {
+      background: rgba(231, 247, 2, 0.08);
+      border-color: rgba(231, 247, 2, 0.25);
+      color: var(--y);
     }
 
     .hero-btns {
@@ -632,6 +933,12 @@
       z-index: 1
     }
 
+    .section-wrap {
+      max-width: 1360px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
     .stag {
       display: inline-block;
       background: rgba(231, 247, 2, .08);
@@ -655,9 +962,99 @@
 
     .ssub {
       color: var(--muted);
-      font-size: 1rem;
-      max-width: 500px;
+      font-size: 1.05rem;
+      max-width: 700px;
       line-height: 1.75
+    }
+
+    /* Enterprise Architecture Digest Section (Wide Canvas) */
+    .aeo-digest-sec {
+      padding: 3rem 4% 4.5rem;
+      max-width: 1360px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .aeo-digest-container {
+      background: linear-gradient(135deg, rgba(231,247,2,0.03) 0%, rgba(37,211,102,0.03) 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+    .aeo-digest-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .aeo-tag {
+      background: rgba(231,247,2,0.12);
+      color: var(--y);
+      border: 1px solid rgba(231,247,2,0.3);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .aeo-digest-head h2 {
+      color: #fff;
+      font-size: 1.35rem;
+      margin: 0;
+      font-weight: 700;
+    }
+    .aeo-desc {
+      color: #d1d7db;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      max-width: 1100px;
+    }
+    .aeo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 1024px) {
+      .aeo-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .aeo-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .aeo-card {
+      background: rgba(0,0,0,0.4);
+      padding: 1.4rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .aeo-card-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+    .aeo-card p {
+      color: #8696a0;
+      font-size: 0.85rem;
+      line-height: 1.55;
+    }
+
+    .showcase-sec {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 4rem 4%;
+    }
+    .showcase-window {
+      max-width: 1360px;
+      margin: 0 auto;
     }
 
     .cen {
