@@ -283,7 +283,7 @@
     <a class="mob-cta mob-link" href="https://user.instantflow.online">Start Free Trial →</a>
   </div>
 
-
+  <main id="main-content">
   <!-- Modern Linear / Stripe Split Hero -->
   <section class="hero" id="hero">
     <div class="hero-container">
@@ -480,7 +480,7 @@
         <img class="showcase-img" src="screenshot/dashbaord.webp" alt="InstantFlow WhatsApp Analytics Dashboard" loading="lazy" width="1200" height="675" />
         <div class="pane-caption">
           <div class="pane-caption-info">
-            <h4>Live Operational Metrics & Health</h4>
+            <h3>Live Operational Metrics &amp; Health</h3>
             <p>Monitor sent, delivered, and read rates in real time with automated anti-ban protections.</p>
           </div>
           <a href="https://user.instantflow.online" class="btn-y" style="padding: 0.55rem 1.2rem; font-size: 0.85rem;">Launch Dashboard →</a>
@@ -492,7 +492,7 @@
         <img class="showcase-img" src="screenshot/chatting.webp" alt="InstantFlow Multi-Agent Live Chat Inbox" loading="lazy" width="1200" height="675" />
         <div class="pane-caption">
           <div class="pane-caption-info">
-            <h4>Multi-Agent Collaboration & Smart Tagging</h4>
+            <h3>Multi-Agent Collaboration &amp; Smart Tagging</h3>
             <p>Unified inbox for sales and support teams. Assign leads, set quick replies, and resolve chats faster.</p>
           </div>
           <a href="https://user.instantflow.online" class="btn-y" style="padding: 0.55rem 1.2rem; font-size: 0.85rem;">Try Team Inbox →</a>
@@ -504,7 +504,7 @@
         <img class="showcase-img" src="screenshot/automaton.webp" alt="InstantFlow No-Code WhatsApp Workflow Builder" loading="lazy" width="1200" height="675" />
         <div class="pane-caption">
           <div class="pane-caption-info">
-            <h4>Visual Drag-and-Drop Chatbot Canvas</h4>
+            <h3>Visual Drag-and-Drop Chatbot Canvas</h3>
             <p>Build 24/7 intelligent routing, keyword auto-replies, and drip marketing sequences with zero coding.</p>
           </div>
           <a href="https://user.instantflow.online" class="btn-y" style="padding: 0.55rem 1.2rem; font-size: 0.85rem;">Build Your Bot →</a>
@@ -516,7 +516,7 @@
         <img class="showcase-img" src="screenshot/settings.webp" alt="InstantFlow Meta Cloud API and Webhook Settings" loading="lazy" width="1200" height="675" />
         <div class="pane-caption">
           <div class="pane-caption-info">
-            <h4>Official Meta Cloud API & Webhook Configuration</h4>
+            <h3>Official Meta Cloud API &amp; Webhook Configuration</h3>
             <p>Direct integration with Meta Graph API. Manage permanent tokens, phone IDs, and webhooks securely.</p>
           </div>
           <a href="https://user.instantflow.online" class="btn-y" style="padding: 0.55rem 1.2rem; font-size: 0.85rem;">Configure Settings →</a>
@@ -1040,14 +1040,15 @@
     </div>
   </div>
 
+  </main>
 
   <footer>
     <div class="fi2">
       <div>
         <div class="fb">InstantFlow</div>
-        <div style="color:#666;font-size:.78rem;margin-top:.4rem;line-height:1.7">
+        <div style="color:#94a3b8;font-size:.78rem;margin-top:.4rem;line-height:1.7">
           📞 <a href="https://wa.me/923184780005" target="_blank" rel="noopener noreferrer"
-            style="color:#666;text-decoration:none;">+92 318
+            style="color:#94a3b8;text-decoration:none;">+92 318
             4780005</a> (WhatsApp)<br />
           📍 Achini Rd, Achini Payan, Peshawar, Pakistan
         </div>
@@ -1169,6 +1170,49 @@
       lerpSpeed: 0.05
     });
   </script>
+
+  <!-- Enterprise Verification Modal (Form Submission Gate) -->
+  <div id="captchaOverlay" class="captcha-overlay" role="dialog" aria-modal="true" aria-labelledby="captchaTitle">
+    <div class="captcha-modal">
+      <button type="button" class="captcha-close-btn" id="captchaCloseBtn" aria-label="Close security check">×</button>
+      <div class="captcha-badge">Security Verification</div>
+      <h3 id="captchaTitle" class="captcha-title">One Quick Check</h3>
+      <p class="captcha-subtitle">Confirm you are human before routing your request to an enterprise specialist.</p>
+      
+      <div class="captcha-widget-box" id="captchaWidgetBox" role="button" tabindex="0" aria-label="Verify you are human">
+        <div class="captcha-left">
+          <div class="captcha-check-ring" id="captchaCheckRing">
+            <div class="captcha-spinner" id="captchaSpinner"></div>
+            <span class="captcha-checkmark" id="captchaCheckmark">✓</span>
+          </div>
+          <span class="captcha-label" id="captchaLabel">I am human</span>
+        </div>
+        <div class="captcha-right-brand">
+          <div class="captcha-brand-logo">
+            <span class="shield-icon">🛡️</span> InstantFlow
+          </div>
+          <span class="captcha-brand-sub">Secure Guard</span>
+        </div>
+      </div>
+      
+      <div class="captcha-status-note" id="captchaStatusNote">Click the box to verify and connect.</div>
+    </div>
+  </div>
+
+  <!-- Enterprise Cookie Consent Banner -->
+  <aside id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookie Preferences">
+    <div class="cookie-head">
+      <span class="cookie-icon" aria-hidden="true">🍪</span>
+      <h3 class="cookie-title">Cookie Preferences</h3>
+    </div>
+    <p class="cookie-text">
+      We use strictly necessary cookies to ensure secure sessions and analytics to optimize your experience. Read our <a href="/privacy-policy">Privacy Policy</a>.
+    </p>
+    <div class="cookie-actions">
+      <button type="button" class="cookie-btn-accept" id="cookieAcceptBtn">Accept All</button>
+      <button type="button" class="cookie-btn-decline" id="cookieDeclineBtn">Essential Only</button>
+    </div>
+  </aside>
 
   <!-- Outcrowd Advanced Animation Libraries -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

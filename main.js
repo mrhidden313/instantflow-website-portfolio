@@ -168,6 +168,105 @@
       });
     }
 
+    // ==========================================================================
+    // ENTERPRISE CAPTCHA VERIFICATION GATE FOR LEAD FORM
+    // ==========================================================================
+    let pendingLeadPayload = null;
+    let isCaptchaVerifying = false;
+
+    function initCaptchaModal() {
+      const overlay = document.getElementById('captchaOverlay');
+      const closeBtn = document.getElementById('captchaCloseBtn');
+      const widgetBox = document.getElementById('captchaWidgetBox');
+      const statusNote = document.getElementById('captchaStatusNote');
+      const label = document.getElementById('captchaLabel');
+
+      if (!overlay || !widgetBox) return;
+
+      function resetCaptcha() {
+        isCaptchaVerifying = false;
+        widgetBox.classList.remove('verifying', 'verified');
+        if (label) label.textContent = 'I am human';
+        if (statusNote) {
+          statusNote.textContent = 'Click the box to verify and connect.';
+          statusNote.style.color = '#64748b';
+        }
+      }
+
+      function openCaptcha(payload) {
+        pendingLeadPayload = payload;
+        resetCaptcha();
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeCaptcha() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+        resetCaptcha();
+      }
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeCaptcha);
+      }
+
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          closeCaptcha();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+          closeCaptcha();
+        }
+      });
+
+      function triggerVerification() {
+        if (isCaptchaVerifying || widgetBox.classList.contains('verified')) return;
+        isCaptchaVerifying = true;
+        widgetBox.classList.add('verifying');
+        if (label) label.textContent = 'Verifying security...';
+        if (statusNote) {
+          statusNote.textContent = 'Checking cryptographic integrity...';
+          statusNote.style.color = 'var(--y, #e7f702)';
+        }
+
+        setTimeout(() => {
+          widgetBox.classList.remove('verifying');
+          widgetBox.classList.add('verified');
+          if (label) label.textContent = 'Verification successful';
+          if (statusNote) {
+            statusNote.textContent = 'Verified! Routing to WhatsApp...';
+            statusNote.style.color = '#22c55e';
+          }
+
+          setTimeout(() => {
+            closeCaptcha();
+            if (pendingLeadPayload) {
+              const encodedMessage = encodeURIComponent(pendingLeadPayload);
+              const targetUrl = `https://wa.me/923184780005?text=${encodedMessage}`;
+              window.open(targetUrl, '_blank', 'noopener,noreferrer');
+              
+              const leadForm = document.getElementById('leadForm');
+              if (leadForm) leadForm.reset();
+              pendingLeadPayload = null;
+            }
+          }, 700);
+        }, 1100);
+      }
+
+      widgetBox.addEventListener('click', triggerVerification);
+      widgetBox.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          triggerVerification();
+        }
+      });
+
+      window.openLeadCaptcha = openCaptcha;
+    }
+
     // Enterprise Consultation Lead Form Submission
     function handleLeadSubmit(event) {
       event.preventDefault();
@@ -179,9 +278,75 @@
 
       const message = `Hello InstantFlow Team, I would like to request an Enterprise Consultation and Demo.\n\n*Name:* ${name}\n*Company:* ${company}\n*WhatsApp:* ${phone}\n*Monthly Volume:* ${volume}\n*Requirements:* ${notes}`;
 
-      const encodedMessage = encodeURIComponent(message);
-      const targetUrl = `https://wa.me/923184780005?text=${encodedMessage}`;
-
-      window.open(targetUrl, '_blank', 'noopener,noreferrer');
+      if (typeof window.openLeadCaptcha === 'function') {
+        window.openLeadCaptcha(message);
+      } else {
+        const encodedMessage = encodeURIComponent(message);
+        const targetUrl = `https://wa.me/923184780005?text=${encodedMessage}`;
+        window.open(targetUrl, '_blank', 'noopener,noreferrer');
+      }
     }
     window.handleLeadSubmit = handleLeadSubmit;
+
+    // ==========================================================================
+    // ENTERPRISE COOKIE CONSENT BANNER LOGIC
+    // ==========================================================================
+    function initCookieConsent() {
+      const consent = localStorage.getItem('instantflow_cookie_consent');
+      if (consent) return;
+
+      let cookieBanner = document.getElementById('cookieBanner');
+      if (!cookieBanner) {
+        cookieBanner = document.createElement('aside');
+        cookieBanner.id = 'cookieBanner';
+        cookieBanner.className = 'cookie-banner';
+        cookieBanner.setAttribute('role', 'dialog');
+        cookieBanner.setAttribute('aria-label', 'Cookie Preferences');
+        cookieBanner.innerHTML = `
+          <div class="cookie-head">
+            <span class="cookie-icon" aria-hidden="true">🍪</span>
+            <h3 class="cookie-title">Cookie Preferences</h3>
+          </div>
+          <p class="cookie-text">
+            We use strictly necessary cookies to ensure secure sessions and analytics to optimize your experience. Read our <a href="/privacy-policy">Privacy Policy</a>.
+          </p>
+          <div class="cookie-actions">
+            <button type="button" class="cookie-btn-accept" id="cookieAcceptBtn">Accept All</button>
+            <button type="button" class="cookie-btn-decline" id="cookieDeclineBtn">Essential Only</button>
+          </div>
+        `;
+        document.body.appendChild(cookieBanner);
+      }
+
+      setTimeout(() => {
+        cookieBanner.classList.add('show');
+      }, 1200);
+
+      const acceptBtn = document.getElementById('cookieAcceptBtn');
+      const declineBtn = document.getElementById('cookieDeclineBtn');
+
+      if (acceptBtn) {
+        acceptBtn.addEventListener('click', () => {
+          localStorage.setItem('instantflow_cookie_consent', 'accepted');
+          cookieBanner.classList.remove('show');
+        });
+      }
+
+      if (declineBtn) {
+        declineBtn.addEventListener('click', () => {
+          localStorage.setItem('instantflow_cookie_consent', 'essential');
+          cookieBanner.classList.remove('show');
+        });
+      }
+    }
+
+    // Initialize interactive modules safely
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        initCookieConsent();
+        initCaptchaModal();
+      });
+    } else {
+      initCookieConsent();
+      initCaptchaModal();
+    }
