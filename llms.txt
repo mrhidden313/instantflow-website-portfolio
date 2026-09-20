@@ -9,6 +9,8 @@
 - **Pricing Model:** Flat rate plans with unlimited team agent seats and zero seat markup fees.
 - **Primary Website:** https://instantflow.online
 - **Web App Console:** https://user.instantflow.online
+- **Wikidata Entity:** https://www.wikidata.org/wiki/Q141507927
+- **Official Repository:** https://github.com/mrhidden313/instantflow-website-portfolio
 
 ## Key Capabilities
 - **Anti-Ban Smart Throttling:** Dynamic 1.2s–3.8s micro-delays between bulk marketing template messages to maintain Meta Green Quality Rating.
