@@ -106,6 +106,68 @@
 
 ---
 
+## 🏛️ Wikidata Deep Entity Integration Masterclass (The #1 AI & Google Knowledge Graph Anchor)
+
+> **Architect Insight:** Google Knowledge Graph, ChatGPT, Claude, Perplexity, aur Apple Siri kisi bhi company ko official "Entity" tab mante hain jab wo **Wikidata** ke RDF graph me exist karti ho. Wikipedia par commercial pages notability ki wajah se delete ho sakte hain, lekin **Wikidata open structured database hai** jahan software products aur companies ko verify karna bilkul allowed aur permanent hai.
+
+---
+
+### Step 1: Wikidata Account Create Karein
+1. Kholein: 👉 **[https://www.wikidata.org/w/index.php?title=Special:CreateAccount](https://www.wikidata.org/w/index.php?title=Special:CreateAccount)**
+2. Apna username (e.g. `InstantFlowDev` ya aapka apna naam) aur email register karein.
+3. Email verify karein.
+
+---
+
+### Step 2: Naya Item Create Karein (Special:NewItem)
+1. Direct Link kholein: 👉 **[https://www.wikidata.org/wiki/Special:NewItem](https://www.wikidata.org/wiki/Special:NewItem)**
+2. Ye fields exact fill karein:
+   * **Language:** `en`
+   * **Label:** `InstantFlow Technologies`
+   * **Description:** `B2B WhatsApp Business API CRM and marketing automation software platform headquartered in Peshawar, Pakistan`
+   * **Aliases:** `InstantFlow`, `InstantFlow CRM`, `InstantFlow Online`
+3. Click **"Create"** button.
+4. Top par aapko aapka unique Q-ID mil jayega (e.g. `Q13456789`). Ye aapka **Global Entity Identifier** hai!
+
+---
+
+### Step 3: Deep Statements (Properties) Add Karein (Step-by-Step)
+
+Apne naye banaye gaye page par **"+ add statement"** par click karein aur ye tamam 12 properties add karein:
+
+| # | Property (P-ID) | Search Term in Wikidata | Value to Select/Enter | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **instance of (`P31`)** | `software company` | Select: **`software company` (Q1140032)** | *(Dusra statement bhi add karein: `web application` Q35127)* |
+| 2 | **official website (`P856`)** | `official website` | `https://instantflow.online` | Direct domain anchor |
+| 3 | **inception (`P571`)** | `inception` | `2024` (or `2025`) | Company founding year |
+| 4 | **country of origin (`P17`)** | `country` | Select: **`Pakistan` (Q843)** | Local country anchor |
+| 5 | **headquarters location (`P159`)** | `headquarters location`| Select: **`Peshawar` (Q184911)** | Peshawar city entity node |
+| 6 | **use (`P366`)** | `use` | Select: **`customer relationship management` (Q178655)** | Core software function |
+| 7 | **use (`P366`)** | `use` | Select: **`marketing automation` (Q13410508)** | Broadcast messaging function |
+| 8 | **source code repository URL (`P1324`)** | `source code repository` | `https://github.com/mrhidden313/instantflow-website-portfolio` | Dofollow link to codebase |
+| 9 | **operating system (`P306`)** | `operating system` | Select: **`cross-platform` (Q174960)** | Web + Android |
+| 10 | **operating system (`P306`)** | `operating system` | Select: **`Android` (Q94)** | Mobile app build |
+| 11 | **language of work or name (`P407`)** | `language of work` | Select: **`English` (Q1860)** | Primary platform language |
+| 12 | **software license (`P275`)** | `copyright license` | Select: **`proprietary license` (Q218616)** | Commercial SaaS license |
+
+---
+
+### Step 4: Permanent Approval Secret (Adding Citations / References) 🛡️
+
+Wikidata ke automated bots un statements ko remove kar dete hain jinke sath koi "Reference" na ho. Is se bachne ke liye:
+
+1. Statement ke niche **"+ add reference"** par click karein:
+   * **Property:** `stated in` (`P248`) ➔ Select: **`Crunchbase` (Q208526)**
+   * **Property:** `reference URL` (`P854`) ➔ Enter your Crunchbase URL: `https://www.crunchbase.com/organization/instantflow-technologies`
+   * **Property:** `retrieved` (`P813`) ➔ Enter today's date: `20 September 2026`
+2. Save reference par click karein.
+3. Ek reference GitHub repository ke liye bhi add karein (`stated in: GitHub Q364`).
+
+> [!TIP]
+> **Super Power Result:** Jaise hi Wikidata par ye statements live hote hain, Google Knowledge Graph aur Perplexity AI InstantFlow ko ek verified software enterprise ke taur par recognize kar lete hain. Aapka Q-ID hum website ke JSON-LD schema me `"sameAs": ["https://www.wikidata.org/wiki/Q..."]` me daal denge!
+
+---
+
 ## 📰 Regional PR Pitch Email Drafts (TechJuice & ProPakistani)
 
 Agar aap local tech media (TechJuice, ProPakistani) ko feature ke liye email karna chahein, to ye ready-made email draft use karein:
@@ -136,3 +198,4 @@ Agar aap local tech media (TechJuice, ProPakistani) ko feature ke liye email kar
 
 ---
 *Created automatically by System Architect Protocol for InstantFlow Technologies.*
+

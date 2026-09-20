@@ -2,3 +2,7 @@
 .netlify
 
 .vercel
+
+# Local Persistent Browser Profile (Never commit credentials)
+.automation-browser-profile/
+*.log

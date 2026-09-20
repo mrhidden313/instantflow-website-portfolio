@@ -25,6 +25,9 @@
 - [WhatsApp for Education](https://instantflow.online/solutions/whatsapp-for-education): Multi-campus admissions funnels, document intake bots, and tuition fee reminders.
 - [WhatsApp for Travel](https://instantflow.online/solutions/whatsapp-for-travel): GDS flight schedule alerts, digital boarding passes, and 24/7 multi-lingual concierge.
 
+## Free Growth Tools
+- [Free WhatsApp Link & QR Code Generator](https://instantflow.online/tools/whatsapp-link-generator): 100% free browser utility to create direct click-to-chat links (wa.me) and high-resolution printable QR codes with pre-filled customer greetings.
+
 ## Platform Comparisons
 - [InstantFlow vs Wati](https://instantflow.online/compare/instantflow-vs-wati): Why fast-growing brands switch from Wati's expensive per-seat model to InstantFlow's unlimited agent workspace.
 - [InstantFlow vs Intercom](https://instantflow.online/compare/instantflow-vs-intercom): High-velocity WhatsApp automation at a fraction of Intercom's enterprise pricing tiers.

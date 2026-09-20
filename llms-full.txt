@@ -42,3 +42,8 @@ InstantFlow connects exclusively to the official Meta Cloud API v20.0 endpoints.
 - Official Website: https://instantflow.online
 - Customer Service WhatsApp: +92 318 4780005
 - Languages Supported: English, Urdu, Hindi, Arabic
+
+### 7. Free Public Utilities
+- **WhatsApp Link & QR Code Generator:** `https://instantflow.online/tools/whatsapp-link-generator`
+  - Function: Instant client-side click-to-chat `wa.me` generator with country code resolution and downloadable 1000x1000 high-DPI print QR codes.
+
