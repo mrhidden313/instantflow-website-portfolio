@@ -63,7 +63,7 @@
       padding: 5rem 6% 3.5rem; border-bottom: 1px solid var(--border);
       position: relative; z-index: 1;
     }
-    .page-hero .inner { max-width: 800px; margin: 0 auto; }
+    .page-hero .inner { max-width: 1360px; margin: 0 auto; }
     .tag {
       display: inline-block; background: rgba(231,247,2,.1); color: var(--y);
       font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
@@ -74,21 +74,37 @@
     .page-hero h1 em { font-style: normal; color: var(--y); text-shadow: 0 0 30px rgba(231,247,2,.4); }
     .page-hero p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
 
-    .content-wrap { max-width: 800px; margin: 0 auto; padding: 4rem 6%; position: relative; z-index: 1; }
+    .content-wrap {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 4rem 4%;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
 
     .toc {
       background: var(--card); border: 1px solid var(--border); border-radius: 16px;
-      padding: 1.8rem 2rem; margin-bottom: 3rem;
+      padding: 1.8rem 2rem;
+      position: sticky;
+      top: 90px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
     }
     .toc h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--y); margin-bottom: 1.2rem; }
-    .toc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.4rem 2rem; }
+    .toc-grid { display: flex; flex-direction: column; gap: 0.4rem; }
     .toc a {
       color: var(--muted); text-decoration: none; font-size: 0.875rem;
-      display: flex; align-items: center; gap: 6px; padding: 0.3rem 0;
+      display: flex; align-items: center; gap: 6px; padding: 0.35rem 0;
       border-bottom: 1px solid rgba(255,255,255,.04); transition: color 0.2s;
     }
     .toc a:hover { color: var(--y); }
     .toc a::before { content: '›'; color: var(--y); font-weight: 900; }
+
+    .policy-body { min-width: 0; }
 
     .alert-box {
       background: rgba(231,247,2,.06); border: 1px solid rgba(231,247,2,.2);
@@ -98,9 +114,9 @@
     .alert-box p { color: #ddd; font-size: 0.9rem; line-height: 1.7; margin: 0; }
     .alert-box strong { color: var(--y); }
 
-    .ps { margin-bottom: 3rem; padding-top: 1rem; }
+    .ps { margin-bottom: 3.5rem; padding-top: 1rem; }
     .ps h2 {
-      font-size: 1.15rem; font-weight: 800; color: var(--y);
+      font-size: 1.25rem; font-weight: 800; color: var(--y);
       margin-bottom: 1.2rem; padding-bottom: 0.6rem;
       border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px;
     }
@@ -123,10 +139,10 @@
     .highlight-box li { list-style: none; padding-left: 0; }
     .highlight-box li::before { content: '✓ '; color: var(--y); font-weight: 900; }
 
-    .refund-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+    .refund-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
     .refund-card {
-      background: rgba(255,255,255,.03); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.2rem;
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.2rem;
     }
     .refund-card h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 0.5rem; }
     .refund-card p { font-size: 0.875rem; color: #ccc; margin: 0; line-height: 1.6; }
@@ -140,10 +156,14 @@
     .footer-brand { font-size: 1rem; font-weight: 800; color: var(--y); margin-bottom: 0.4rem; }
     .footer-copy { color: var(--muted); font-size: 0.78rem; line-height: 1.7; }
 
+    @media(max-width: 960px) {
+      .content-wrap { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 4%; }
+      .toc { position: static; max-height: none; margin-bottom: 2rem; }
+      .toc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.4rem 2rem; }
+    }
     @media(max-width: 640px) {
       .refund-grid { grid-template-columns: 1fr; }
       .toc-grid { grid-template-columns: 1fr; }
-      .content-wrap { padding: 3rem 5%; }
     }
   </style>
 </head>
@@ -188,19 +208,20 @@
     </div>
   </div>
 
-  <div class="alert-box">
-    <p>By activating, accessing, or using the <strong>InstantFlow Enterprise Messaging Platform</strong>, you confirm that you have read, understood, and unconditionally agree to be bound by these Terms &amp; Conditions. This agreement constitutes a legally binding contract between you ("Client") and InstantFlow ("the Company").</p>
-  </div>
-
-  <!-- SECTION 1 -->
-  <div class="ps" id="t1">
-    <h2><span class="num">01</span> Nature of Service</h2>
-    <p>The InstantFlow platform is a <strong>professional enterprise-grade messaging and customer engagement system</strong> powered exclusively by the <strong>InstantFlow Proprietary System</strong>. This service is fundamentally distinct from standard consumer WhatsApp or WhatsApp Business applications.</p>
-    <p>InstantFlow is purpose-built for corporations, financial institutions, e-commerce enterprises, digital agencies, real estate firms, and other professional organizations requiring high-volume, compliant, and structured business communication at scale.</p>
+  <div class="policy-body">
     <div class="alert-box">
-      <p><strong>Important:</strong> The InstantFlow Proprietary System operates through the official Meta WhatsApp Business API infrastructure. Your business communication will be presented with the authority and professional appearance associated with enterprise-level brands — comparable to banks, national courier services, and telecom operators.</p>
+      <p>By activating, accessing, or using the <strong>InstantFlow Enterprise Messaging Platform</strong>, you confirm that you have read, understood, and unconditionally agree to be bound by these Terms &amp; Conditions. This agreement constitutes a legally binding contract between you ("Client") and InstantFlow ("the Company").</p>
     </div>
-  </div>
+
+    <!-- SECTION 1 -->
+    <div class="ps" id="t1">
+      <h2><span class="num">01</span> Nature of Service</h2>
+      <p>The InstantFlow platform is a <strong>professional enterprise-grade messaging and customer engagement system</strong> powered exclusively by the <strong>InstantFlow Proprietary System</strong>. This service is fundamentally distinct from standard consumer WhatsApp or WhatsApp Business applications.</p>
+      <p>InstantFlow is purpose-built for corporations, financial institutions, e-commerce enterprises, digital agencies, real estate firms, and other professional organizations requiring high-volume, compliant, and structured business communication at scale.</p>
+      <div class="alert-box">
+        <p><strong>Important:</strong> The InstantFlow Proprietary System operates through the official Meta WhatsApp Business API infrastructure. Your business communication will be presented with the authority and professional appearance associated with enterprise-level brands — comparable to banks, national courier services, and telecom operators.</p>
+      </div>
+    </div>
 
   <!-- SECTION 2 -->
   <div class="ps" id="t2">
@@ -357,7 +378,7 @@
       </ul>
     </div>
   </div>
-
+  </div>
 </div>
 
 <footer>

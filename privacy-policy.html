@@ -42,28 +42,58 @@
     .nav-back:hover { color: var(--yellow); }
 
     .page-hero { padding: 5rem 6% 3rem; border-bottom: 1px solid var(--border); }
+    .page-hero .hero-inner { max-width: 1360px; margin: 0 auto; }
     .page-hero .tag { display: inline-block; background: rgba(231,247,2,0.1); color: var(--yellow); font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 4px; margin-bottom: 1rem; }
     .page-hero h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; letter-spacing: -1.5px; margin-bottom: 0.75rem; }
     .page-hero p { color: var(--muted); font-size: 0.95rem; }
 
-    .content-wrap { max-width: 780px; margin: 0 auto; padding: 4rem 6%; }
-    .toc { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 3rem; }
+    .content-wrap {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 4rem 4%;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.6rem 1.8rem;
+      position: sticky;
+      top: 90px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+    }
     .toc h3 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--yellow); margin-bottom: 1rem; }
     .toc ol { padding-left: 1.2rem; }
     .toc li { margin-bottom: 0.4rem; }
-    .toc a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .toc a { color: var(--muted); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; display: block; line-height: 1.4; }
     .toc a:hover { color: var(--yellow); }
 
-    .policy-section { margin-bottom: 3rem; }
-    .policy-section h2 { font-size: 1.3rem; font-weight: 800; color: var(--yellow); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    .policy-body { min-width: 0; }
+    .policy-section { margin-bottom: 3.5rem; }
+    .policy-section h2 { font-size: 1.35rem; font-weight: 800; color: var(--yellow); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
     .policy-section p { color: #ccc; line-height: 1.8; margin-bottom: 1rem; font-size: 0.95rem; }
     .policy-section ul { color: #ccc; line-height: 1.8; padding-left: 1.4rem; margin-bottom: 1rem; }
     .policy-section li { margin-bottom: 0.5rem; font-size: 0.95rem; }
     .policy-section strong { color: #fff; }
     .policy-section a { color: var(--yellow); }
 
-    .highlight-box { background: rgba(231,247,2,0.06); border-left: 3px solid var(--yellow); border-radius: 0 8px 8px 0; padding: 1rem 1.5rem; margin: 1.5rem 0; }
-    .highlight-box p { margin: 0; color: #ddd; }
+    .highlight-box { background: rgba(231,247,2,0.06); border-left: 3px solid var(--yellow); border-radius: 0 8px 8px 0; padding: 1.2rem 1.6rem; margin-bottom: 2.5rem; }
+    .highlight-box p { margin: 0; color: #ddd; line-height: 1.7; }
+
+    @media (max-width: 960px) {
+      .content-wrap {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .toc {
+        position: static;
+        max-height: none;
+      }
+    }
 
     footer { border-top: 1px solid var(--border); padding: 2rem 6%; text-align: center; }
     .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
@@ -83,7 +113,7 @@
 </nav>
 
 <div class="page-hero">
-  <div style="max-width:780px;margin:0 auto;">
+  <div class="hero-inner">
     <div class="tag">Legal</div>
     <h1>Privacy Policy</h1>
     <p>Last updated: May 16, 2026 &nbsp;·&nbsp; Effective Date: May 16, 2026</p>
@@ -110,12 +140,13 @@
     </ol>
   </div>
 
-  <div class="highlight-box">
-    <p>InstantFlow is a WhatsApp Marketing SaaS platform built for businesses to manage customer conversations, run broadcast campaigns, and automate messaging at scale. This Privacy Policy explains how we handle data for both our platform users (businesses) and their end customers.</p>
-  </div>
+  <div class="policy-body">
+    <div class="highlight-box">
+      <p>InstantFlow is a WhatsApp Marketing SaaS platform built for businesses to manage customer conversations, run broadcast campaigns, and automate messaging at scale. This Privacy Policy explains how we handle data for both our platform users (businesses) and their end customers.</p>
+    </div>
 
-  <div class="policy-section" id="s1">
-    <h2>1. Who We Are</h2>
+    <div class="policy-section" id="s1">
+      <h2>1. Who We Are</h2>
     <p><strong>InstantFlow</strong> ("we", "us", "our") is a SaaS platform that enables businesses to leverage the WhatsApp Business API for customer communication, marketing campaigns, and support automation. Our platform is operated by FK Afridi and the InstantFlow team, contactable at <a href="mailto:adminsupport@instantflow.online">adminsupport@instantflow.online</a>.</p>
     <p>We act as a <strong>data processor</strong> on behalf of our business customers (data controllers) who use our platform to communicate with their end users via WhatsApp.</p>
   </div>
@@ -239,7 +270,7 @@
       <li><strong>Platform:</strong> <a href="index.html">www.instantflow.online</a></li>
     </ul>
   </div>
-
+</div>
 </div>
 
 <footer>
