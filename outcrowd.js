@@ -40,35 +40,37 @@ document.addEventListener("DOMContentLoaded", () => {
     // ═══════════════════════════════════════════════════════════════
     // ═══════════════════════════════════════════════════════════════
     // ═══════════════════════════════════════════════════════════════
-    // 1.5 HERO INTRO ANIMATIONS (Semantic & Search Engine Friendly)
+    // 1.5 HERO INTRO ANIMATIONS (Desktop Only to protect Mobile LCP)
     // ═══════════════════════════════════════════════════════════════
-    const heroTl = gsap.timeline({ delay: 0.1 });
+    if (!isMobileDevice) {
+        const heroTl = gsap.timeline({ delay: 0.1 });
 
-    heroTl.fromTo('.hero-badge',
-        { opacity: 0, scale: 0.8, filter: 'blur(12px)', y: 30 },
-        { opacity: 1, scale: 1, filter: 'blur(0px)', y: 0, duration: 0.9, ease: 'expo.out', clearProps: isMobileDevice ? 'filter' : '' }
-    );
+        heroTl.fromTo('.hero-badge',
+            { opacity: 0, scale: 0.8, filter: 'blur(12px)', y: 30 },
+            { opacity: 1, scale: 1, filter: 'blur(0px)', y: 0, duration: 0.9, ease: 'expo.out' }
+        );
 
-    // Fade and slide up H1 without destroying DOM structure
-    heroTl.fromTo('h1',
-        { opacity: 0, y: isMobileDevice ? 20 : 40, filter: 'blur(8px)' },
-        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.9, ease: 'expo.out', clearProps: 'filter' },
-        "-=0.5"
-    );
+        // Fade and slide up H1 without destroying DOM structure
+        heroTl.fromTo('h1',
+            { opacity: 0, y: 40, filter: 'blur(8px)' },
+            { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.9, ease: 'expo.out', clearProps: 'filter' },
+            "-=0.5"
+        );
 
-    // Fade and slide up Hero Subtitle
-    heroTl.fromTo('.hero p',
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' },
-        "-=0.4"
-    );
+        // Fade and slide up Hero Subtitle
+        heroTl.fromTo('.hero p',
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' },
+            "-=0.4"
+        );
 
-    // FadeUp Buttons
-    heroTl.fromTo('.hero-btns',
-        { opacity: 0, y: 40, scale: 0.97 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'expo.out' },
-        "-=0.3"
-    );
+        // FadeUp Buttons
+        heroTl.fromTo('.hero-btns',
+            { opacity: 0, y: 40, scale: 0.97 },
+            { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'expo.out' },
+            "-=0.3"
+        );
+    }
 
     // ═══════════════════════════════════════════════════════════════
     // 2. 3D SCROLL PARALLAX — Objects move as you scroll
