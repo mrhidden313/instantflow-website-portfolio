@@ -70,6 +70,32 @@ document.addEventListener("DOMContentLoaded", () => {
             { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'expo.out' },
             "-=0.3"
         );
+    } else {
+        // Mobile: Ultra-smooth, lightweight hardware-accelerated entrance (no heavy blur, fast 0.4s response)
+        const mobileHeroTl = gsap.timeline({ delay: 0.05 });
+
+        mobileHeroTl.fromTo('.hero-badge',
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', clearProps: 'all' }
+        );
+
+        mobileHeroTl.fromTo('h1',
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', clearProps: 'all' },
+            "-=0.25"
+        );
+
+        mobileHeroTl.fromTo('.hero-desc',
+            { opacity: 0, y: 12 },
+            { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out', clearProps: 'all' },
+            "-=0.2"
+        );
+
+        mobileHeroTl.fromTo('.hero-btns',
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out', clearProps: 'all' },
+            "-=0.2"
+        );
     }
 
     // ═══════════════════════════════════════════════════════════════
