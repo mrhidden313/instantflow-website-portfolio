@@ -1896,9 +1896,9 @@
 
     .social-proof-grid {
       display: grid;
-      grid-template-columns: minmax(360px, 490px) 1fr;
-      gap: 3.5rem;
-      align-items: center;
+      grid-template-columns: minmax(360px, 480px) 1fr;
+      gap: clamp(3.5rem, 5.5vw, 5.5rem);
+      align-items: stretch;
     }
 
     @media (max-width: 992px) {
@@ -1911,14 +1911,15 @@
     .social-proof-left {
       width: 100%;
       display: flex;
-      justify-content: center;
+      height: 100%;
     }
 
     .social-proof-left .live-dashboard {
       width: 100%;
-      max-width: 490px;
+      max-width: 480px;
+      height: 100%;
       margin: 0;
-      padding: 2rem 1.8rem;
+      padding: 2.2rem 1.8rem;
       border-radius: 26px;
       background: linear-gradient(135deg, rgba(231, 247, 2, 0.03), rgba(0, 0, 0, 0.75) 50%, rgba(231, 247, 2, 0.015));
       border: 1px solid rgba(231, 247, 2, 0.18);
@@ -1927,6 +1928,9 @@
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
       position: relative;
       z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .live-header {
@@ -2060,7 +2064,8 @@
     }
 
     .feed-wrap {
-      height: 260px;
+      flex: 1;
+      min-height: 260px;
       overflow: hidden;
       position: relative;
       mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
