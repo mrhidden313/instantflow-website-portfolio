@@ -1886,17 +1886,45 @@
       }
     }
 
-    /* LIVE USERS WIDGET */
-    .live-dashboard {
-      background: rgba(255, 255, 255, 0.03);
+    /* SOCIAL PROOF & WHY CHOOSE 2-COLUMN SECTION */
+    .social-proof-sec {
+      padding: 6rem 5%;
+      max-width: 1320px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .social-proof-grid {
+      display: grid;
+      grid-template-columns: minmax(360px, 490px) 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 992px) {
+      .social-proof-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    .social-proof-left {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .social-proof-left .live-dashboard {
+      width: 100%;
+      max-width: 490px;
+      margin: 0;
+      padding: 2rem 1.8rem;
+      border-radius: 26px;
+      background: linear-gradient(135deg, rgba(231, 247, 2, 0.03), rgba(0, 0, 0, 0.75) 50%, rgba(231, 247, 2, 0.015));
+      border: 1px solid rgba(231, 247, 2, 0.18);
       backdrop-filter: blur(24px) saturate(180%);
       -webkit-backdrop-filter: blur(24px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 24px;
-      max-width: 420px;
-      margin: 3.5rem auto 0;
-      padding: 1.5rem;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
       position: relative;
       z-index: 10;
     }
@@ -1904,11 +1932,122 @@
     .live-header {
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: space-between;
       font-weight: 800;
       font-size: 1.15rem;
       color: #fff;
       margin-bottom: 1.5rem;
+    }
+
+    .live-header-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .live-status-pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #00e676;
+      background: rgba(0, 230, 118, 0.1);
+      border: 1px solid rgba(0, 230, 118, 0.25);
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      letter-spacing: 0.3px;
+    }
+
+    .social-proof-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .why-choose-title {
+      font-size: clamp(2rem, 3.2vw, 2.75rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1.2px;
+      color: #fff;
+      margin-bottom: 1.25rem;
+    }
+
+    .why-choose-title .why-highlight {
+      color: var(--y);
+      font-style: normal;
+    }
+
+    .why-choose-lead {
+      color: #e5e7eb;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: 0.9rem;
+    }
+
+    .why-choose-body {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.8rem;
+    }
+
+    .why-features-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+      margin-bottom: 2rem;
+    }
+
+    .why-feat-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 0.9rem 1.1rem;
+      border-radius: 14px;
+      backdrop-filter: blur(12px);
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .why-feat-row:hover {
+      border-color: rgba(231, 247, 2, 0.3);
+      transform: translateX(4px);
+    }
+
+    .why-feat-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(231, 247, 2, 0.15);
+      color: var(--y);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .why-feat-text strong {
+      display: block;
+      color: #fff;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+
+    .why-feat-text span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .why-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
     }
 
     .live-dot {

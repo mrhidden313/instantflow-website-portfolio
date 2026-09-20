@@ -670,37 +670,78 @@
 
   <div class="glow-line"></div>
 
-  <section id="social-proof" class="reveal">
-    <div class="cen">
-      <div class="stag">Live Activity</div>
-      <h2 class="stit">Join 150+ Businesses Online</h2>
-      <p class="ssub">See who is scaling their operations with InstantFlow right now.</p>
-    </div>
-    <div class="live-dashboard reveal">
-      <div class="live-header">
-        <div class="live-dot"></div> Live Users
-      </div>
-      <div class="feed-wrap">
-        <div class="feed-list" id="feedList">
-          <!-- JS populates this -->
+  <section id="social-proof" class="reveal social-proof-sec">
+    <div class="social-proof-grid">
+      <!-- Left Column: Live Platform Activity Card (Enlarged & Prominent) -->
+      <div class="social-proof-left">
+        <div class="live-dashboard">
+          <div class="live-header">
+            <div class="live-header-title">
+              <div class="live-dot"></div>
+              <span>Live Platform Activity</span>
+            </div>
+            <div class="live-status-pill">● Active Now</div>
+          </div>
+          <div class="feed-wrap">
+            <div class="feed-list" id="feedList">
+              <!-- JS populates this -->
+            </div>
+          </div>
+          <div class="trusted-footer">
+            <div class="avatars-group">
+              <div class="a-cir"><img src="assets/logos/1.png" alt="brand" onerror="this.parentElement.textContent='J';" /></div>
+              <div class="a-cir"><img src="assets/logos/5.png" alt="brand" onerror="this.parentElement.textContent='A';" /></div>
+              <div class="a-cir"><img src="assets/logos/12.png" alt="brand" onerror="this.parentElement.textContent='S';" /></div>
+              <div class="a-cir"><img src="assets/logos/20.png" alt="brand" onerror="this.parentElement.textContent='F';" /></div>
+              <div class="a-cir"><img src="assets/logos/30.png" alt="brand" onerror="this.parentElement.textContent='G';" /></div>
+              <div class="a-cir" style="background: rgba(231,247,2,0.15); color: var(--y); font-size: 0.65rem; font-weight: 900;">99+</div>
+            </div>
+            <div class="tf-text">Trusted by <strong>150+</strong> Brands &amp; Businesses</div>
+          </div>
         </div>
       </div>
-      <div class="trusted-footer">
-        <div class="avatars-group">
-          <div class="a-cir"><img src="assets/logos/1.png" alt="brand" onerror="this.parentElement.textContent='J';" />
+
+      <!-- Right Column: Why Choose InstantFlow (Moved from above footer & upgraded to executive tier) -->
+      <div class="social-proof-right">
+        <div class="stag" style="margin-bottom: 0.75rem;">Verified Platform</div>
+        <h2 class="why-choose-title">Why Choose InstantFlow for <span class="why-highlight">WhatsApp Marketing?</span></h2>
+        
+        <p class="why-choose-lead">
+          In today's fast-paced digital landscape, utilizing an official <strong>WhatsApp Business API</strong> CRM is essential for scaling customer communication. <strong>InstantFlow</strong> empowers businesses to <strong>Automate</strong> sales and <strong>Convert</strong> leads faster through advanced marketing campaigns.
+        </p>
+        
+        <p class="why-choose-body">
+          We provide top-tier <strong>Anti-Ban</strong> protection, ensuring your bulk messages and alerts safely reach your audience <strong>At Scale</strong>. Whether you're sending promotional broadcasts or managing a 24/7 customer support helpdesk via our no-code AI chatbot, our platform handles it seamlessly.
+        </p>
+
+        <div class="why-features-list">
+          <div class="why-feat-row">
+            <div class="why-feat-icon">✓</div>
+            <div class="why-feat-text">
+              <strong>Official Meta Cloud API v20.0</strong>
+              <span>Direct enterprise endpoints with zero third-party scraper risks.</span>
+            </div>
           </div>
-          <div class="a-cir"><img src="assets/logos/5.png" alt="brand" onerror="this.parentElement.textContent='A';" />
+          <div class="why-feat-row">
+            <div class="why-feat-icon">✓</div>
+            <div class="why-feat-text">
+              <strong>Smart Anti-Ban Queuing Engine</strong>
+              <span>Dynamic throttle pacing for 100% policy-compliant delivery.</span>
+            </div>
           </div>
-          <div class="a-cir"><img src="assets/logos/12.png" alt="brand" onerror="this.parentElement.textContent='S';" />
+          <div class="why-feat-row">
+            <div class="why-feat-icon">✓</div>
+            <div class="why-feat-text">
+              <strong>Unified Multi-Agent Inbox</strong>
+              <span>Collaborate with your entire team with zero per-seat penalty fees.</span>
+            </div>
           </div>
-          <div class="a-cir"><img src="assets/logos/20.png" alt="brand" onerror="this.parentElement.textContent='F';" />
-          </div>
-          <div class="a-cir"><img src="assets/logos/30.png" alt="brand" onerror="this.parentElement.textContent='G';" />
-          </div>
-          <div class="a-cir"
-            style="background: rgba(231,247,2,0.15); color: var(--y); font-size: 0.6rem; font-weight: 900;">99+</div>
         </div>
-        <div class="tf-text">Trusted by <strong>150+</strong> Brands &amp; Creators</div>
+
+        <div class="why-actions">
+          <a href="https://user.instantflow.online" class="btn-y" style="padding: 0.75rem 1.6rem; font-size: 0.95rem;">Get Started Free →</a>
+          <a href="#contact" class="btn-g" style="padding: 0.75rem 1.4rem; font-size: 0.95rem;">Request Demo</a>
+        </div>
       </div>
     </div>
   </section>
@@ -1005,20 +1046,6 @@
     </div>
   </div>
 
-  <!-- SEO Content Block to fix thin content & H1 keyword match -->
-  <section class="seo-content"
-    style="padding: 60px 20px; max-width: 1200px; margin: 0 auto; color: #8696a0; line-height: 1.8;">
-    <h2 style="color: #fff; font-size: 2rem; margin-bottom: 20px;">Why Choose InstantFlow for WhatsApp Marketing?</h2>
-    <p style="margin-bottom: 15px;">In today's fast-paced digital landscape, utilizing a powerful <strong>WhatsApp
-        Business API</strong> CRM is essential for scaling customer communication. <strong>InstantFlow</strong> empowers
-      businesses to <strong>Automate</strong> sales and <strong>Convert</strong> leads faster through advanced marketing
-      campaigns. We provide top-tier <strong>Anti-Ban</strong> protection, ensuring your bulk messages and alerts safely
-      reach your audience <strong>At Scale</strong>.</p>
-    <p>Whether you're sending promotional broadcasts or managing a 24/7 customer support helpdesk via our no-code AI
-      chatbot, our platform handles it seamlessly. Unlock the full potential of the official WhatsApp Business API,
-      drive more revenue, enhance customer retention, and manage thousands of conversations efficiently using the
-      industry's most reliable WhatsApp CRM.</p>
-  </section>
 
   <footer>
     <div class="fi2">
