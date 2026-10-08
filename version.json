@@ -1,7 +1,7 @@
 {
-  "versionCode": 11,
-  "versionName": "11.0",
+  "versionCode": 14,
+  "versionName": "14.0",
   "downloadUrl": "https://instantflow.online/app-release.apk",
   "forceUpdate": false,
-  "releaseNotes": "High-priority notification channel & heads-up banner display enabled."
+  "releaseNotes": "Multi-inbox WhatsApp health monitor, audio voice note recording, and direct media workflows."
 }
