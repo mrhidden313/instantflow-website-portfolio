@@ -1,7 +1,7 @@
 {
-  "versionCode": 16,
-  "versionName": "16.0",
+  "versionCode": 17,
+  "versionName": "17.0",
   "downloadUrl": "https://instantflow.online/app-release.apk",
   "forceUpdate": false,
-  "releaseNotes": "Multi-inbox WhatsApp health monitor, audio voice note recording, and direct media workflows."
+  "releaseNotes": "Fix real-time chat sync, resolve message flicker, auto-sync unread badge, and background polling."
 }
