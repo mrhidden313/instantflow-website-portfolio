@@ -1,7 +1,7 @@
 {
-  "versionCode": 18,
-  "versionName": "18.0",
+  "versionCode": 19,
+  "versionName": "19.0",
   "downloadUrl": "https://instantflow.online/app-release.apk",
   "forceUpdate": false,
-  "releaseNotes": "Fix subscription fetch in settings, resolve chat sync, prevent message drop, and auto-sync unread badge."
+  "releaseNotes": "Auto-dismiss notification on tap, prevent foreground notification spam in status bar tray, and optimize background alerts."
 }
