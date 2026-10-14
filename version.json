@@ -1,7 +1,7 @@
 {
-  "versionCode": 17,
-  "versionName": "17.0",
+  "versionCode": 18,
+  "versionName": "18.0",
   "downloadUrl": "https://instantflow.online/app-release.apk",
   "forceUpdate": false,
-  "releaseNotes": "Fix real-time chat sync, resolve message flicker, auto-sync unread badge, and background polling."
+  "releaseNotes": "Fix subscription fetch in settings, resolve chat sync, prevent message drop, and auto-sync unread badge."
 }
