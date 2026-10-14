@@ -1,7 +1,7 @@
 {
-  "versionCode": 19,
-  "versionName": "19.0",
+  "versionCode": 20,
+  "versionName": "20.0",
   "downloadUrl": "https://instantflow.online/app-release.apk",
   "forceUpdate": false,
-  "releaseNotes": "Auto-dismiss notification on tap, prevent foreground notification spam in status bar tray, and optimize background alerts."
+  "releaseNotes": "Fix audio message forwarding, resolve quick replies audio format, and optimize playback."
 }
