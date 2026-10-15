@@ -1,7 +1,7 @@
 {
-  "versionCode": 20,
-  "versionName": "20.0",
+  "versionCode": 21,
+  "versionName": "21.0",
   "downloadUrl": "https://instantflow.online/app-release.apk",
   "forceUpdate": false,
-  "releaseNotes": "Fix audio message forwarding, resolve quick replies audio format, and optimize playback."
+  "releaseNotes": "Fix notification tap deep-linking to chat room and auto-dismiss status bar notifications when read."
 }
