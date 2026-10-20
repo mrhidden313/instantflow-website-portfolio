@@ -1,7 +1,7 @@
 {
-  "versionCode": 22,
-  "versionName": "22.0",
+  "versionCode": 23,
+  "versionName": "23.0",
   "downloadUrl": "https://instantflow.online/app-release.apk",
   "forceUpdate": false,
-  "releaseNotes": "Android 15 edge-to-edge support, R8 resource optimizations, and notification fixes."
+  "releaseNotes": "Reverted edge-to-edge layout, restored clean status bar rendering, and performance optimizations."
 }
