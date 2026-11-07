@@ -1,7 +1,7 @@
 {
-  "versionCode": 23,
-  "versionName": "23.0",
+  "versionCode": 24,
+  "versionName": "24.0",
   "downloadUrl": "https://instantflow.online/app-release.apk",
   "forceUpdate": false,
-  "releaseNotes": "Reverted edge-to-edge layout, restored clean status bar rendering, and performance optimizations."
+  "releaseNotes": "Updated to version 24.0: Strict label-based routing & auto assignment optimizations."
 }
