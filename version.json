@@ -1,7 +1,7 @@
 {
-  "versionCode": 25,
-  "versionName": "25.0",
+  "versionCode": 26,
+  "versionName": "26.0",
   "downloadUrl": "https://instantflow.online/app-release.apk",
   "forceUpdate": false,
-  "releaseNotes": "Updated to version 25.0: Enhanced performance and stability improvements."
+  "releaseNotes": "Updated to version 26.0: Compliant with Google Play Photo and Video policy (system photo picker)."
 }
