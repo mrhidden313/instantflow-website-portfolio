@@ -1,7 +1,7 @@
 {
-  "versionCode": 24,
-  "versionName": "24.0",
+  "versionCode": 25,
+  "versionName": "25.0",
   "downloadUrl": "https://instantflow.online/app-release.apk",
   "forceUpdate": false,
-  "releaseNotes": "Updated to version 24.0: Strict label-based routing & auto assignment optimizations."
+  "releaseNotes": "Updated to version 25.0: Enhanced performance and stability improvements."
 }
